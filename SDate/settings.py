@@ -56,7 +56,7 @@ ROOT_URLCONF = 'SDate.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['/Users/user/Dev/project5/src/templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
