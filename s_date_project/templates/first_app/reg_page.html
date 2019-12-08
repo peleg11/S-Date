@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="utf-8">
+    <title>Registration_Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="{% url 'home_page' %}">S-DATE</a>
+      <ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link active" href="{% url 'first_app:reg_page' %}">Sign Up</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'first_app:user_login'%}">Log in</a>
+  </li>
+</nav>
+    <div class="container">
+      {% if registered %}
+      <h1> thank you for registering </h1>
+      {% else %}
+      <h1>Register herre!</h1>
+      <h3>Fill out the form:</h3>
+      <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p}}
+
+
+<!--
+    <div class="form-row">
+    <div class="form-group col-md-6">
+    <label for="inputName">First Name</label>
+            <input type="text" class="form-control" id="inputName" placeholder="Firs Name">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputLast">Last Name</label>
+            <input type="text" class="form-control" id="inputLast" placeholder="Last Name">
+          </div>
+          </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Email</label>
+      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Password</label>
+      <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">Country</label>
+    <input type="text" class="form-control" id="inputCountry" placeholder="Country">
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">City</label>
+    <input type="text" class="form-control" id="inputCity" placeholder="City">
+  </div>
+  <div class="form-group">
+    <label for="select">your disable</label>
+    <select class="form-control" id="selectname="choose">
+      <option>First </option>
+      <option>Sec</option>
+      <option>bla</option>
+      <option>blablabla</option>
+
+    </select>
+
+  </div>
+  <div class="form-group">
+    <label for="inputhob">Hobbies</label>
+    <input type="text" class="form-control" id="inputhob" placeholder="">
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroupFileAddon01">Photo</span>
+    </div>
+    <div class="custom-file">
+      <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+      <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+    </div>
+  </div>
+-->
+  <button type="submit" class="btn btn-primary" value="Register">Register</button>
+</form>
+{% endif%}
+    </div>
+  </body>
+</html>

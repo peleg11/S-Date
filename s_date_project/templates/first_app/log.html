@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Log_In</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+
+
+
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="{% url 'home_page' %}">S-DATE</a>
+      <ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link active" href="{% url 'first_app:reg_page' %}">Sign Up</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'first_app:user_login'%}">Log in</a>
+  </li>
+</nav>
+<p></p>
+<p></p>
+<p></p>
+<div class="container">
+  <form action="{% url 'first_app:user_login'%}" method="post">
+    {% csrf_token %}
+    
+
+
+
+    <label for="username">Username:</label>
+    <input type="text" class="form-control" name="username" placeholder="Enter username">
+
+
+    <label for="password">Password</label>
+    <input type="password" name="password" class="form-control"  placeholder="Password">
+
+
+  <input type="submit" name="" value="Login">
+</form>
+
+</div>
+
+  </body>
+</html>
