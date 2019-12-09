@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: shay.peleg11@gmail.com
+Date: Mon, 09 Dec 2019 22:27:48 -0000
+Message-ID: <157593046894.9944.9707176458320757372@shay>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/reset/OA/5c5-60169692b8a9f517c2d1/
+
+Your username, in case you’ve forgotten: peleg
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------

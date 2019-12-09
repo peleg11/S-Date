@@ -29,6 +29,6 @@ urlpatterns = [
     url(r'special/',views.special, name='special'),
     url(r'^user_login/$',views.base, name='base'),
     path('admin/', admin.site.urls),
-
+    path('', include('django.contrib.auth.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
