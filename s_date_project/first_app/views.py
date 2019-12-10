@@ -13,6 +13,8 @@ def index(request):
     return render(request,'first_app/home_page.html')
 def base(request):
     return render(request,'first_app/base.html')
+def profile(request):
+    return render(request,'first_app/profile_page.html')
 
 @login_required
 def user_logout(request):

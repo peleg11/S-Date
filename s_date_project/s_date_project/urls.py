@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^logout/$',views.user_logout,name='logout'),
     url(r'special/',views.special, name='special'),
     url(r'^user_login/$',views.base, name='base'),
+    url(r'^/$', views.profile, name='profile_page'),
     path('admin/', admin.site.urls),
     path('', include('django.contrib.auth.urls')),
 
