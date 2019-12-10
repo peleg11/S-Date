@@ -9,7 +9,7 @@
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="{% static "css/char.css" %}"/>
+
 
 <style>
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
@@ -199,16 +199,14 @@ body {
     </form>
   </div>
 
-<<<<<<< HEAD
 
-=======
-    <a href="#" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-to " title="settings"><i class="fa fa-user"></i></a>
->>>>>>> 4beb1bebfe56684587029804534ff2f6ce12fa4d
+
+
     {% if user.is_authenticated %}
     <a href="{% url 'logout' %}" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-to " title="Logout"><i class="fa fa-sign-out"></i></a>
 
     {% endif %}
-    <a href="{% url 'password_reset' %}" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-to " title="reset password"><i class="fa fa-user"></i></a>
+  <a href="#" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-to " title="settings"><i class="fa fa-user"></i></a>
  </div>
 </div>
 
