@@ -18,10 +18,7 @@
   <li class="nav-item">
     <a class="nav-link" href="{% url 'first_app:user_login'%}">Log in</a>
   </li>
-          </li>
-         <li class="nav-item">
-    <a class="nav-link" href="{% url 'password_reset' %}">Forget Password?</a>
-  </li>
+
 </nav>
 <p></p>
 <p></p>
@@ -42,6 +39,10 @@
 
 
   <input type="submit" name="" value="Login">
+
+    <a class="nav-link" href="{% url 'password_reset' %}">Forget Password?</a>
+
+
 </form>
 
 </div>
