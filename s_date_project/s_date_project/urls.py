@@ -31,5 +31,6 @@ urlpatterns = [
     url(r'^/$', views.profile, name='profile_page'),
     path('admin/', admin.site.urls),
     path('', include('django.contrib.auth.urls')),
+    url(r'^event/$', views.event, name='event'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

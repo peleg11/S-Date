@@ -15,6 +15,8 @@ def base(request):
     return render(request,'first_app/base.html')
 def profile(request):
     return render(request,'first_app/profile_page.html')
+def event(request):
+    return render(request,'first_app/event.html')
 
 @login_required
 def user_logout(request):
