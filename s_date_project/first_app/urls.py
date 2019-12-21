@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^$',views.base, name='base'),
     url(r'^/$', views.profile, name='profile_page'),
     url(r'^event/$', views.event, name='event'),
+    url(r'^news/$', views.news, name='news'),
 ]

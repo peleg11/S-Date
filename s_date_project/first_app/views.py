@@ -17,6 +17,8 @@ def profile(request):
     return render(request,'first_app/profile_page.html')
 def event(request):
     return render(request,'first_app/event.html')
+def news(request):
+    return render(request,'first_app/news.html')
 
 @login_required
 def user_logout(request):

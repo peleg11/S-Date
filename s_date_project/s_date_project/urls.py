@@ -32,5 +32,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('django.contrib.auth.urls')),
     url(r'^event/$', views.event, name='event'),
+    url(r'^news/$', views.news, name='news'),
+    url(r"^announcements/", include("pinax.announcements.urls", namespace="pinax_announcements")),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
