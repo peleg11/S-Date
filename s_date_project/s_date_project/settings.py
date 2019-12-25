@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'first_app'
+    'first_app',
+    'pinax.calendars',
+    'imagekit',
+    'pinax.events'
 ]
 
 MIDDLEWARE = [
@@ -67,7 +70,10 @@ TEMPLATES = [
             ],
         },
     },
+
 ]
+
+AUTH_USER_MODEL = 'first_app.Account'
 
 WSGI_APPLICATION = 's_date_project.wsgi.application'
 
@@ -131,9 +137,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+PINAX_EVENTS_IMAGE_THUMBNAIL_SPEC = "pinax.events.specs.ImageThumbnail"
+PINAX_EVENTS_SECONDARY_IMAGE_THUMBNAIL_SPEC = "pinax.events.specs.SecondaryImageThumbnail"
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
+
 # MEDIA
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'

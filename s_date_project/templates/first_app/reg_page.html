@@ -1,9 +1,57 @@
+{% load static%}
 <!DOCTYPE html>
 <html >
   <head>
     <meta charset="utf-8">
+    <style type="text/css">
+    body  {
+      background: url( '/static/images/pr.jpg' );
+      background-size: cover;
+      background-attachment: fixed;
+
+
+    }
+  .form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  }
+  .form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+  }
+  .form-signin .form-control:focus {
+    z-index: 2;
+  }
+  .form-signin input[type="email"] {
+    margin-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .form-signin input[type="text"] {
+    margin-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .form-signin input[type="password"] {
+    margin-bottom: -1px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .h3{
+    text-align: center;
+  }
+</style>
+
+
+
     <title>Registration_Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static "css/bulma.css" %}"/>
   </head>
 
   <body>
@@ -21,15 +69,67 @@
       {% if registered %}
       <h1> thank you for registering </h1>
       {% else %}
-      <h1>Register here!</h1>
-      <h3>Fill out the form:</h3>
-      <form enctype="multipart/form-data" method="post">
+
+      <form class="form-signin" method="post">{% csrf_token %}
+        <h1 class="h3 mb-3 font-weight-normal">Register an account</h1>
+
+  <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+
+  <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required>
+
+  <input type="password" name="password1" id="inputPassword1" class="form-control" placeholder="Password" required>
+
+  <input type="password" name="password2" id="inputPassword2" class="form-control" placeholder="Confirm password" required>
+
+  <input type="text" name="firstname" id="inputFirstname" class="form-control" placeholder="First name" required>
+
+  <input type="text" name="lastname" id="inputLastname" class="form-control" placeholder="Last name" required>
+
+  <input type="text" name="country" id="inputCountry" class="form-control" placeholder="Country" required>
+
+  <input type="text" name="city" id="inputCity" class="form-control" placeholder="City" required>
+
+  <input type="date" name="birthdate" id="inputBirthdate" class="form-control" placeholder="Date of birth" required>
+
+  <select  name="disabillity" id="inputDisabillity" class="form-control" placeholder="Select your disabillity" required>
+    <option>other </option>
+      <option>visual</option>
+      <option>talk</option>
+      <option>autism</option>
+      <option>hands</option>
+      <option>legs</option>
+    </select>
+
+  <input type="text" name="hobbies" id="inputHobbies" class="form-control" placeholder="Hobbies" required>
+
+  <input type="file" name="profile_pic" id="inputProfilepic" class="form-control" placeholder="Profile picture">
+
+
+
+        {% for field in registration_form %}
+<p>
+{% for error in field.errors %}
+                        <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+                  </p>
+{% endfor %}
+{% if registration_form.non_field_errors %}
+<div style="color: red">
+<p>{{registration_form.non_field_errors}}</p>
+</div>
+
+{% endif %}
+<p>
+<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+</p>
+</form>
+      <!--<form enctype="multipart/form-data" method="post">
         {% csrf_token %}
         {{ user_form.as_p }}
-        {{ profile_form.as_p}}
+        {{ registration_form.as_p}}
 
 
-<!--
+
     <div class="form-row">
     <div class="form-group col-md-6">
     <label for="inputName">First Name</label>
@@ -83,8 +183,7 @@
     </div>
   </div>
 -->
-  <button type="submit" class="btn btn-primary" value="Register">Register</button>
-</form>
+
 {% endif%}
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

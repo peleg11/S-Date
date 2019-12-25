@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style type="text/css">
+  .form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+  }
+  .form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+  }
+  .form-signin .form-control:focus {
+    z-index: 2;
+  }
+  .form-signin input[type="email"] {
+    margin-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .form-signin input[type="username"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .h3{
+    text-align: center;
+  }
+  .blog-posts{
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+  }
+</style>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+
+
+<div class="w3-top">
+  <div class="w3-bar w3-theme-d2 w3-left-align w3-large w3-padding-12">
+    <a href="{% url 'view_profile' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="My Profile">
+      <img src="{{ request.user.profile_pic.url }}" class="w3-circle" style="height:31px;width:35px" alt="Avatar">  My Profile</a>
+      <a href="{% url 'profile_page' %}" class="w3-bar-item w3-button w3-padding-large w3-display-top"  title="Home"><i class="fa fa-home" ></i></a>
+      <a href="#" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Messages"><i class="fa fa-envelope"></i></a>
+      <a href="" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Events"><i class="fa fa-calendar"></i></a>
+      <div class="w3-dropdown-hover">
+        <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-blue">3</span></button>
+        <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+          <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
+          <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
+          <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
+        </div>
+      </div>
+
+      <div class="w3-bar-item w3-input w3-display-topmiddle w3-hover-none">
+        <form action="/action_page.php">
+          <input type="text" style="width:400px" placeholder="search"  name="search">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+
+
+
+
+      {% if user.is_authenticated %}
+      <a href="{% url 'logout' %}" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-to " title="Logout"><i class="fa fa-sign-out"></i></a>
+
+      {% endif %}
+      <a href="{%url 'profile_settings'%}" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-to " title="settings"><i class="fa fa-user"></i></a>
+    </div>
+  </div>
+<br>
+<br>
+<br>
+  <div class="container">
+<form class="form-signin" method="post">{% csrf_token %}
+
+  <h1 class="h3 mb-3 font-weight-normal">Account</h1>
+
+  <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus value={{account_form.initial.email}}>
+
+  <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required
+  value="{{account_form.initial.username}}">
+
+  <input type="text" name="firstname" id="inputFirstname" class="form-control" placeholder="First name" required value="{{account_form.initial.firstname}}">
+
+  <input type="text" name="lastname" id="inputLastname" class="form-control" placeholder="Last name" required value="{{account_form.initial.lastname}}">
+
+  <input type="text" name="country" id="inputCountry" class="form-control" placeholder="Country" required value="{{account_form.initial.country}}">
+
+  <input type="text" name="city" id="inputCity" class="form-control" placeholder="City" required value="{{account_form.initial.city}}">
+
+  <input type="date" name="birthdate" id="inputBirthdate" class="form-control" placeholder="Date of birth" required value="{{account_form.initial.birthdate}}">
+
+  <select  name="disabillity" id="inputDisabillity" class="form-control" placeholder="Select your disabillity" required value="{{account_form.initial.disabillity}}">
+    <option>other </option>
+    <option>visual</option>
+    <option>talk</option>
+    <option>autism</option>
+    <option>hands</option>
+    <option>legs</option>
+    </select>
+
+  <input type="text" name="hobbies" id="inputHobbies" class="form-control" placeholder="Hobbies" required value="{{account_form.initial.hobbies}}">
+
+  <input type="file" name="profile_pic" id="inputProfilepic" class="form-control" placeholder="Profile picture" > <img src="{{account_form.initial.profile_pic.url}}" width="50px">
+
+
+  {% for field in account_form %}
+      <p>
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+  {% endfor %}
+  {% if account_form.non_field_errors %}
+    <div style="color: red">
+      <p>{{account_form.non_field_errors}}</p>
+    </div>
+
+  {% endif %}
+
+  {% if success_message %}
+    <p style="color:green; text-align: center;">{{success_message}}</p>
+  {% endif  %}
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Save changes</button>
+
+</form>
+
+<div class="d-flex flex-column">
+  <a class="m-auto" href="{% url 'password_change' %}">Change password</a>
+</div>
+
+<div class="container mt-4 p-4">
+  <div class="row">
+    <div class="blog-posts">
+      <h3 class="mb-3 font-weight-normal">Blog posts:</h3>
+      {% if blog_posts %}
+        <ul class="list-group">
+        {% for post in blog_posts %}
+          <a href="{% url 'post_detail' pk=post.pk %}" style="text-decoration: none;"><li class="list-group-item">{{post}}</li></a>
+        {% endfor %}
+        </ul>
+      {% else %}
+        <p>You have no blog posts. Create a post <a href="{% url 'create_post' %}">here</a>.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>
