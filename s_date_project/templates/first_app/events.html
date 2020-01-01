@@ -1,0 +1,55 @@
+ {% load pinax_events_tags %}
+ {% events as event_items %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<style>
+article {
+  display: block;
+}
+</style>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+  </head>
+
+  <body>
+
+
+    <h1> Hello events </h1>
+    <section class="event-list">
+        {% for event in event_items %}
+            <article class="event" style="color:black">
+                <section class="event-img">
+                    <a href="{{ event.url }}">
+                        {% if event.image_thumb %}<img src="{{ event.image_thumb.url }}" width="200" />{% endif %}
+                    </a>
+                </section>
+                <ul class="event-details">
+                    <li>
+                        <h2><a href="{{ event.url }}">{{ event.title }}</a></h2>
+                    </li>
+                    <li class="meta">
+                        <span>
+                            Where: {{ event.where }}
+                        </span>
+                        <span>
+                            When: {{ event.start_date }}&endash;{{ event.end_start }}
+                        </span>
+                    </li>
+                    <li class="event-description">
+                        {{ event.what_html|safe }}
+                    </li>
+                </ul>
+            </article>
+        {% endfor %}
+    </section>
+    {% for users in Users_view%}
+    <p>{{users.user}}</p>
+    <p><img src={{users.profile_pic.url}} alt="avatar" width="50px" height="50px"></p>
+{%endfor%}
+    <p>bla nla
+
+
+  </body>
+</html>

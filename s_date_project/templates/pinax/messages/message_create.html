@@ -1,0 +1,72 @@
+{% load pinax_messages_tags %}
+{% load bootstrap %}
+{% load static %}
+
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+<link rel="stylesheet" href="{% static "css/style2.css" %}">
+<div class="w3-top">
+  <div class="w3-bar w3-theme-d2 w3-left-align w3-large w3-padding-12">
+    <a href="{% url 'view_profile' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="My Profile">
+      <img src="{{ request.user.profile_pic.url }}" class="w3-circle" style="height:31px;width:35px" alt="Avatar">  My Profile</a>
+      <a href="{% url 'profile_page' %}" class="w3-bar-item w3-button w3-padding-large w3-display-top"  title="Home"><i class="fa fa-home" ></i></a>
+      <a href="{% url 'pinax_messages:inbox' %}"><i class="fa fa-envelope"></i>Message</a>
+      <a href="" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Events"><i class="fa fa-calendar"></i></a>
+      <div class="w3-dropdown-hover">
+        <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-blue">3</span></button>
+        <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+          <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
+          <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
+          <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
+        </div>
+      </div>
+
+      <div class="w3-bar-item w3-input w3-display-topmiddle w3-hover-none w3-text-black">
+        <form action="/action_page.php">
+
+          <input type="text" style="width:300px" placeholder="search for posts"  name="search">
+<button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+</div>
+
+
+
+
+
+
+      {% if user.is_authenticated %}
+      <a href="{% url 'logout' %}" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-top " title="Logout"><i class="fa fa-sign-out"></i></a>
+
+      {% endif %}
+      <a href="{%url 'profile_settings'%}" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-top " title="settings"><i class="fa fa-user"></i></a>
+
+      <a href="{% url 'search'%}" class="w3-bar-item w3-button w3-right w3-padding-large w3-display-top" title="search"><i class="fa fa-search"></i></a>
+
+    </div>
+  </div>
+  </html>
+  <br>
+  <br>
+
+{% block body %}
+<div class="pinax-messages-create-container">
+    <h2>New Message</h2>
+
+    <form class="comment-form" action="{% url "pinax_messages:message_create" %}" method="post">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <div class="form-actions">
+            <a href="{% url "pinax_messages:inbox" %}" class="cancel">Cancel</a>
+            <button>Send</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

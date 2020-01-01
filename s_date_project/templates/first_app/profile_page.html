@@ -13,19 +13,33 @@
     <title></title>
   </head>
   <body>
-    <div class="w3-col m7">
+    <!--<div class="w3-col m7">
       <div class="w3-row-padding">
             <div class="w3-col m12">
               <div class="w3-card w3-round w3-white">
                         <div class="w3-container w3-padding">
                           <h6 class="w3-opacity">Social Media template by w3.css</h6>
                           <p contenteditable="true" class="w3-border w3-padding">Status: Feeling Blue</p>
-                          <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button>
+
+                          <form method="post">
+            {% csrf_token %}
+            {{ form.post }}
+            <br>
+            <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button>
+        </form>
+        <h2>posts:{{ text }}</h2>
+        {% for post in posts %}
+            <h1>{{ post.post }}</h1>
+            <p>Posted by {{ post.user.firstname }} on {{ post.created }}</p>
+        {% endfor %}
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+
+
+                </div> -->
+
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script id="free_accessibility_plugin_script" src="https://accessibility.f-static.com/site/free-accessibility-plugin/accessibility.min.js?lan=en&place=bottom-right&distance=50" crossorigin="anonymous"></script>
   </body>

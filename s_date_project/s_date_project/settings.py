@@ -39,10 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'first_app',
-    'imagekit',
-    'pinax.events',
-    'pinax.announcements',
-    
+    'rest_framework',
+    'pinax.messages',
+    'pinax.likes',
+    'bootstrapform',
+
+
 ]
 
 MIDDLEWARE = [
@@ -53,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 's_date_project.urls'
@@ -68,10 +71,16 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'pinax.messages.context_processors.user_messages',
             ],
         },
     },
+
 ]
+
+AUTH_USER_MODEL = 'first_app.Account'
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 WSGI_APPLICATION = 's_date_project.wsgi.application'
 
@@ -115,7 +124,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 
 ]
-
+PINAX_LIKES_LIKABLE_MODELS = {
+        "app.Model": {}  # override default config settings for each model in this dict
+    }
+AUTHENTICATION_BACKENDS = [
+        # other backends
+        'pinax.likes.auth_backends.CanLikeBackend',
+    ]
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -135,9 +150,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
+
 # MEDIA
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
@@ -145,7 +162,11 @@ MEDIA_URL = '/media/'
 LOGIN_URL = 'first_app/user_login'
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
-PINAX_EVENTS_IMAGE_THUMBNAIL_SPEC = "pinax.events.specs.ImageThumbnail"
-PINAX_EVENTS_SECONDARY_IMAGE_THUMBNAIL_SPEC = "pinax.events.specs.SecondaryImageThumbnail"
-PINAX_NEWS_IMAGE_THUMBNAIL_SPEC = "pinax.news.specs.ImageThumbnail"
-PINAX_NEWS_SECONDARY_IMAGE_THUMBNAIL_SPEC = "pinax.news.specs.SecondaryImageThumbnail"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'sdateproject2019@gmail.com'
+EMAIL_HOST_PASSWORD = '12Almog12'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False

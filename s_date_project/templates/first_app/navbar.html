@@ -1,4 +1,8 @@
+
 {% load static %}
+
+
+
 
 <!DOCTYPE html>
 <html>
@@ -11,407 +15,337 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 
-<style>
-html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
-* {
-    box-sizing: border-box;
-
-}
-
-ul {
-    list-style-type: none;
-}
-
-body {
-    font-family: "Lato", sans-serif;
-}
-
-* {
-
-    margin: 0;
-    box-sizing: border-box;
-}
-
-.wrapper {
-    background-color: #fff;
-
-    top: 20px;
-    left: 10px;
-
-}
-
-.calendar {
-    margin: auto;
-
-    width: 280px;
-    background-color: #fff;
-    box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, 0.2);
-
-}
-
-.month {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 40px 30px;
-    text-align: center;
-    background-color: #4D6776;
-    color: #fff;
-}
-
-.weekdays {
-    background-color: #7591b0;
-    color: #fff;
-    padding: 7px 0;
-    display: flex;
-}
-
-.days {
-    font-weight: 100;
-    padding: 10px 0;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.weekdays div,
-.days div {
-    text-align: center;
-    width: 14.28%;
-}
-
-.days div {
-    padding: 10px 0;
-    margin-bottom: 10px;
-    transition: all 0.4s;
-}
-
-.prev_date {
-    color: #999;
-}
-
-.today {
-    background-color: #7591b0;
-    color: #fff;
-}
-
-.days div:hover {
-    cursor: pointer;
-    background-color: #dfe6e9
-}
-
-.prev,
-.next {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    font-size: 15px;
-    background-color: rgba(0, 0, 0, 0.1);
-    transition: all 0.4s;
-}
-
-.prev:hover,
-.next:hover {
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.2);
-}
-
-#month {
-    font-size: 20px;
-    font-weight: 300;
-}
-.chat-user {
-    position:relative;
-    padding: 5px 10px;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    background: rgba(255,0,0,0.06);
-}
-.chat-user a{
-    line-height:28px;
-    cursor: default;
-    color: rgb(255,0,0);
-}
-.chat-user:after {
-    content: "";
-    width: 3px;
-    height: 3px;
-    position: absolute;
-    right: 5px;
-    top: 40%;
-    padding: 4px;
-    background-color:rgb(255,0,0);
-    border-radius: 50%;
-}
-.chat-user.online a{
-    color: #2d9a40;
-    cursor:pointer;
-}
-.chat-user.online{
-    background: rgba(45, 154, 64, 0.06);
-}
-.chat-user.online:hover{
-    cursor:pointer;
-    background: rgba(45, 154, 64, 0.2);
-}
-.chat-user.online:after{
-        background: #2d9a40;
-}
-.chat-user img{
-    width:30px;
-    height:30px;
-}
+<link rel="stylesheet" href="{% static "css/style2.css" %}">
 
 
 
-
-
-
-
-
-
-</style>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <body class="w3-theme-l5" onload="renderDate()">
-
-<!-- Navbar -->
-<div class="w3-top">
- <div class="w3-bar w3-theme-d2 w3-left-align w3-large w3-padding-12">
-  <a href="{% url 'profile_page' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="My Profile">
-    <img src="{{ user.userprofileinfo.profile_pic.url }}" class="w3-circle" style="height:31px;width:35px" alt="Avatar">  My Profile</a>
-    <a href="{% url 'base' %}" class="w3-bar-item w3-button w3-padding-large w3-display-top"  title="Home"><i class="fa fa-home" ></i></a>
-  <a href="#" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Messages"><i class="fa fa-envelope"></i></a>
-  <a href="{% url 'event' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Events">Event</a>
-  <a href="{% url 'news' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="News">Articles</a>
-
-  <div class="w3-dropdown-hover">
-    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-blue">3</span></button>
-    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-      <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
-      <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
-      <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
-    </div>
-  </div>
-
-  <div class="w3-bar-item w3-input w3-display-topmiddle w3-hover-none">
-    <form action="/action_page.php">
-      <input type="text" style="width:400px" placeholder="search"  name="search">
-    <button type="submit"><i class="fa fa-search"></i></button>
-    </form>
-  </div>
-
-
-
-
-    {% if user.is_authenticated %}
-    <a href="{% url 'logout' %}" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-to " title="Logout"><i class="fa fa-sign-out"></i></a>
-
-    {% endif %}
-  <a href="#" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-to " title="settings"><i class="fa fa-user"></i></a>
- </div>
-</div>
-
-<!-- left navbar -->
-<div class="w3-container" style="max-width:1400px;margin-top:80px">
-  <div class="w3-row">
- <div class="col-sm-3 left-sidebar">
-
-        <div class="w3-container">
-          <div class="w3-card w3-center" width="190px">
-          <p>Upcoming Events:</p>
-    <div class="wrapper">
-      <div class="calendar">
-          <div class="month">
-              <div class="prev" onclick="moveDate('prev')">
-                  <span>&#10094;</span>
-              </div>
-              <div>
-                  <h2 id="month"></h2>
-                  <p id="date_str"></p>
-              </div>
-              <div class="next" onclick="moveDate('next')">
-                  <span>&#10095;</span>
-              </div>
-          </div>
-          <div class="weekdays">
-              <div>Sun</div>
-              <div>Mon</div>
-              <div>Tue</div>
-              <div>Wed</div>
-              <div>Thu</div>
-              <div>Fri</div>
-              <div>Sat</div>
-          </div>
-          <div class="days">
-
-          </div>
-      </div>
-
-</div>
-
-  <div class="w3-card w3-round w3-white w3-center">
-            <p><strong>Holiday</strong></p>
-            <p>Friday 15:00</p>
-            <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
-          </div>
-        </div>
-        <br>
-
-        <div class="w3-card w3-round w3-white w3-center">
-
-            <p>Friend Request</p>
-            <img src="/w3images/avatar6.png" alt="Avatar" style="width:50%"><br>
-            <span>Jane Doe</span>
-            <div class="w3-row w3-opacity">
-              <div class="w3-half">
-                <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
-              </div>
-              <div class="w3-half">
-                <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br>
-
-</div>
-
   <script>
-      var dt = new Date();
-      function renderDate() {
-          dt.setDate(1);
-          var day = dt.getDay();
-          var today = new Date();
-          var endDate = new Date(
-              dt.getFullYear(),
-              dt.getMonth() + 1,
-              0
-          ).getDate();
-
-          var prevDate = new Date(
-              dt.getFullYear(),
-              dt.getMonth(),
-              0
-          ).getDate();
-          var months = [
-              "January",
-              "February",
-              "March",
-              "April",
-              "May",
-              "June",
-              "July",
-              "August",
-              "September",
-              "October",
-              "November",
-              "December"
-          ]
-          document.getElementById("month").innerHTML = months[dt.getMonth()];
-          document.getElementById("date_str").innerHTML = dt.toDateString();
-          var cells = "";
-          for (x = day; x > 0; x--) {
-              cells += "<div class='prev_date'>" + (prevDate - x + 1) + "</div>";
+   $(document).ready(function(){
+        function updateText(btn, newCount, verb){
+        btn.text(newCount + " " + verb)
+    }
+    $(".like-btn").click(function(e){
+      e.preventDefault()
+      var this_ = $(this)
+      var likeUrl = this_.attr("data-href")
+      var likeCount = parseInt(this_.attr("data-likes")) | 0
+      var addLike = likeCount + 1
+      var removeLike = likeCount - 1
+      if (likeUrl){
+         $.ajax({
+          url: likeUrl,
+          method: "GET",
+          data: {},
+          success: function(data){
+            console.log(data)
+            var newLikes;
+            if (data.liked){
+                updateText(this_, addLike, "Unlike")
+            } else {
+                updateText(this_, removeLike, "Like")
+                // remove one like
+            }
+          }, error: function(error){
+            console.log(error)
+            console.log("error")
           }
-          console.log(day);
-          for (i = 1; i <= endDate; i++) {
-              if (i == today.getDate() && dt.getMonth() == today.getMonth()) cells += "<div class='today'>" + i + "</div>";
-              else
-                  cells += "<div>" + i + "</div>";
-          }
-          document.getElementsByClassName("days")[0].innerHTML = cells;
-
+        })
       }
 
-      function moveDate(para) {
-          if(para == "prev") {
-              dt.setMonth(dt.getMonth() - 1);
-          } else if(para == 'next') {
-              dt.setMonth(dt.getMonth() + 1);
-          }
-          renderDate();
-      }
+    })
+  })
   </script>
+  <script>
+  $(document).ready(function(){
+    {% block jquery %}{% endblock %}
+  })
+  </script>
+  <!-- Navbar -->
+  <div class="w3-top">
+    <div class="w3-bar w3-theme-d2 w3-left-align w3-large w3-padding-12">
+      <a href="{% url 'view_profile' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="My Profile">
+        <img src="{{ request.user.profile_pic.url }}" class="w3-circle" style="height:31px;width:35px" alt="Avatar">  My Profile</a>
+        <a href="{% url 'profile_page' %}" class="w3-bar-item w3-button w3-padding-large w3-display-top"  title="Home"><i class="fa fa-home" ></i></a>
+        <a href="{% url 'pinax_messages:inbox' %}"><i class="fa fa-envelope"></i>Message</a>
+        <a href="" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Events"><i class="fa fa-calendar"></i></a>
+        <div class="w3-dropdown-hover">
+          <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-blue">3</span></button>
+          <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+            <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
+            <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
+            <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
+          </div>
+        </div>
 
-    <div class="w3-col m7">
-      <div class="w3-row-padding">
-            <div class="w3-col m12">
-              <div class="w3-card w3-round w3-white">
-                        <div class="w3-container w3-padding">
-                          <h5 class="w3-opacity">Write something to post:</h5>
-                          <p contenteditable="true" class="w3-border w3-padding" ></p>
-                          <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button>
-                          <hr>
-                        </div>
-                      </div>
+        <div class="w3-bar-item w3-input w3-display-topmiddle w3-hover-none w3-text-black">
+          <form action="/action_page.php">
+
+            <input type="text" style="width:300px" placeholder="search for posts"  name="search">
+  <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+</div>
+
+
+
+
+
+
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-top " title="Logout"><i class="fa fa-sign-out"></i></a>
+
+        {% endif %}
+        <a href="{%url 'profile_settings'%}" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-top " title="settings"><i class="fa fa-user"></i></a>
+
+        <a href="{% url 'search'%}" class="w3-bar-item w3-button w3-right w3-padding-large w3-display-top" title="search"><i class="fa fa-search"></i></a>
+
+      </div>
+    </div>
+
+    <!-- left navbar -->
+    <div class="w3-container" style="max-width:1400px;margin-top:80px">
+      <div class="w3-row">
+        <div class="col-sm-3 left-sidebar">
+
+          <div class="w3-container">
+            <div class="w3-card w3-center" width="190px">
+              <p>Upcoming Events:</p>
+              <div class="wrapper">
+                <div class="calendar">
+                  <div class="month">
+                    <div class="prev" onclick="moveDate('prev')">
+                      <span>&#10094;</span>
                     </div>
+                    <div>
+                      <h2 id="month"></h2>
+                      <p id="date_str"></p>
+                    </div>
+                    <div class="next" onclick="moveDate('next')">
+                      <span>&#10095;</span>
+                    </div>
+                  </div>
+                  <div class="weekdays">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                  </div>
+                  <div class="days">
+
                   </div>
                 </div>
 
-<!-- Right chat -->
-<div class="w3-col m2">
-                  <div class="w3-row-padding">
-                    <div class="w3-card w3-round w3-white">
-                    <div class="w3-container w3-padding">
-                      <h3>My Friends</h3>
-                  </div>
-                  <div class="w3-row-padding">
-                      <div class="col-sm-12 chat-user online">
-                          <a href="#">
-                              <img src="assets/imgs/1.jpg" class="pull-left"/>
-                              &nbsp;
-                              Almog Sofer
-                          </a>
-                      </div>
-                      <div class="col-sm-12 chat-user online">
-                          <a href="#">
-                              <img src="assets/imgs/2.jpg" class="pull-left"/>
-                              &nbsp;
-                              Shai Peleg
-                          </a>
-                      </div>
-                      <div class="col-sm-12 chat-user online">
-                          <a href="#">
-                              <img src="assets/imgs/3.jpg" class="pull-left"/>
-                              &nbsp;
-                              Dmitri Korkin
-                          </a>
-                      </div>
-                      <div class="col-sm-12 chat-user">
-                          <a href="#">
-                              <img src="{{ user.userprofileinfo.profile_pic.url }}" class="pull-left"/>
-                              &nbsp;
-                              Lionel Messi
-                          </a>
-                      </div>
-                      <div class="col-sm-12 chat-user online">
-                          <a href="#">
-                              <img src="assets/imgs/5.jpg" class="pull-left"/>
-                              &nbsp;
-                              Christiano Ronaldo
-                          </a>
-                      </div>
-                  </div>
               </div>
+
+              <div class="w3-card w3-round w3-white w3-center">
+                <p><strong>Holiday</strong></p>
+                <p>Friday 15:00</p>
+                <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
+              </div>
+            </div>
+            <br>
+
+
+                        {% for r_request in rec_friend_requests %}
+            <div class="w3-card w3-round w3-white w3-center">
+
+              <p>Friend Request</p>
+
+			<p><a href="{% url 'view_profile_with_pk' pk=r_request.from_user.pk %}">{{ r_request.from_user.firstname }} {{ r_request.from_user.lastname }}</a></p>
+      <img src="{{r_request.from_user.profile_pic.url}}" alt="Avatar" style="width:50%"><br>
+<br>
+      <div class="w3-row w3-opacity">
+        <div class="w3-half">
+          <small><a class='btn btn-primary' href="{% url 'change_friends' operation='add' pk=r_request.from_user.pk %}">Accept</a></small>
+        </div>
+        <div class="w3-half">
+            <small><a class='btn btn-warning' href="{% url 'delete_friend_request' pk=r_request.from_user.pk %}">Ignore</a></small>
+            <br>
+        </div>
+      </div>
+    </div>
+    <br>
+		{% endfor %}
+
+
+          </div>
+          <br>
+
+        </div>
+
+
+
+        <div class="w3-col m7">
+          <div class="w3-row-padding">
+            <div class="w3-col m12">
+              <div class="w3-card w3-round w3-white">
+                <div class="w3-container w3-padding">
+
+
+                  <form method="post" enctype="multipart/form-data" id='result'>
+          <button onclick="startConverting()" class="w3-button w3-right-align" id="re" > <i id= 'record' class=" fa fa-microphone"></i></button>
+    {% csrf_token %}
+
+    {{ form.as_p }}
+    <br>
+    <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button>
+  </form>
+
+                  <hr>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h2>POSTS:</h2>
+
+
+          {% for post in posts %}
+          <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+            <img src="{{post.user.profile_pic.url}}" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:70px">
+            <span class="w3-right w3-opacity">{{ post.created }}</span><br>
+             <hr class="w3-clear">
+             <p><h3>{{ post.post }}</h4></p>
+<span class="w3-left w3-opacity"><p><h5>Posted by {{ post.user.firstname }} {{ post.user.lastname }} </h5></p></span>
+
+<span class="w3-right">  {{total_likes}} Like{{ total_likes|pluralize}}</span>
+<form action ="{%url 'like_post' %}" method="post">
+  {% csrf_token %}
+  {% if is_liked %}
+             <button type="submit" class="w3-button w3-theme-d1 w3-margin-bottom w3-right" name="post_id" value="{{post.id}}"><i class="fa fa-thumbs-down"></i> Dislike</button>
+{% else %}
+<button type="submit" class="w3-button w3-theme-d1 w3-margin-bottom w3-right" name="post_id" value="{{post.id}}"><i class="fa fa-thumbs-up"></i> Like</button>
+{% endif %}
+</form>
+           </div>
+    <br>
+
+
+
+          {% endfor %}
+
+
+
+
+        </div>
+
+
+        <!-- Right chat -->
+        <div class="w3-col m2">
+          <div class="w3-row-padding">
+            <div class="w3-card w3-round w3-white">
+              <div class="w3-container w3-padding">
+                <h3>My Friends</h3>
+              </div>
+              <div class="w3-row-padding">
+
+                {% for friend in friends  %}
+
+
+              {%if friend in online_users%}
+                <div class="col-sm-12 chat-user online">
+                  {%else%}
+                  <div class="col-sm-12 chat-user">
+                    {%endif%}
+
+                  <a href="#">
+                      <a href="{% url 'view_profile_with_pk' pk=friend.pk %}">
+                    <img src="{{ friend.profile_pic.url }}" class="pull-left"/>
+
+                    &nbsp;
+
+                    {{friend.firstname}} {{friend.lastname}}
+
+                  </a>
+                </div>
+
+                {%endfor%}
+
+              </div>
+            </div>
+          </div>
+<h2> test for online </h2>
+{% for online in online_users%}
+{{online.username}}
+{%endfor%}
+
+          <h2>Other People</h2>
+
+{% for user in sent_friend_requests %}
+
+
+                     <a href="{% url 'view_profile_with_pk' pk=user.pk %}">
+                         <h4>{{user.to_user.firstname}} {{user.to_user.lastname}}</h4>
+                     </a>
+
+                       			<small><a class="btn btn-warning" href="{% url 'cancel_friend_request' pk=user.pk %}">Cancel Request</a></small>
+                              {%if not user.to_user in friends and user.to_user in sent_friend_requests %}
+                              <a href="{% url 'view_profile_with_pk' pk=user.pk %}">
+                                  <h4>{{user.to_user.firstname}} {{user.to_user.lastname}}</h4>
+                              </a>
+                                  <small><a class='btn btn-primary' href="{% url 'send_friend_request'  pk=user.pk %}">Add Friend</a></small>
+                                  {%endif%}
+                            {% endfor %}
+                            {% for user in users  %}
+{%if not user.to_user in sent_friend_requests and not user in friends %}
+
+
+                        <a href="{% url 'view_profile_with_pk' pk=user.pk %}">
+                            <h4>{{user.firstname}} {{user.lastname}}</h4>
+                        </a>
+                            <small><a class='btn btn-primary' href="{% url 'send_friend_request'  pk=user.pk %}">Add Friend</a></small>
+
+
+                     {% endif %}
+
+                 {% endfor %}
+
+                 {% for user in sent_requests%}
+                 <ul>
+
+                 			<li>{{ user }}</li>
+
+                 		</ul>
+                    {%endfor%}
+                 <h2>Friends</h2>
+                 {% for friend in friends %}
+                 {% if  not friend.is_admin %}
+
+
+                     <a href="{% url 'view_profile_with_pk' pk=friend.pk %}">
+                         <h4>{{ friend.firstname }} {{ friend.lastname }}</h4>
+                     </a>
+                     <a href="{% url 'change_friends' operation='remove' pk=friend.pk %}">
+                     <button type="button" class="btn btn-default">Remove Friend</button>
+                     </a>
+                     {% endif %}
+
+                 {% endfor %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<script>
-function highlight(elem){
-                elem.style.color = "red";
-                elem.parentElement.parentElement.style.transform="scale(1.5)";
-                setTimeout(function(){
-                    elem.style.color="";
-                    elem.parentElement.parentElement.style.transform="scale(1)";
-                },300);
-            }
-          </script>
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% include 'first_app/js.html' %}
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script src="{% static "scripts/stt1.js"%}"></script>
+<script src="{% static "scripts/stt2.js"%}"> </script>
+<script src="{% static "scripts/calendar.js"%}"></script>
+<script src="{% static "scripts/users_list.js"%}"> </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script id="free_accessibility_plugin_script" src="https://accessibility.f-static.com/site/free-accessibility-plugin/accessibility.min.js?lan=en&place=bottom-right&distance=50" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+  {% include 'first_app/footer.html' %}
 </body>
 </html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <head>
+    <style type="text/css">
+  .create-form {
+	    width: 100%;
+	    max-width: 100%;
+	    padding: 15px;
+	    margin: auto;
+  	}
+  	.submit-button{
+  		max-width: 200px;
+  	}
+</style>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+      <!-- Navbar -->
+      <div class="w3-top">
+        <div class="w3-bar w3-theme-d2 w3-left-align w3-large w3-padding-12">
+          <a href="{% url 'view_profile' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="My Profile">
+            <img src="{{ request.user.profile_pic.url }}" class="w3-circle" style="height:31px;width:35px" alt="Avatar">  My Profile</a>
+            <a href="{% url 'profile_page' %}" class="w3-bar-item w3-button w3-padding-large w3-display-top"  title="Home"><i class="fa fa-home" ></i></a>
+            <a href="#" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Messages"><i class="fa fa-envelope"></i></a>
+            <a href="" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Events"><i class="fa fa-calendar"></i></a>
+            <div class="w3-dropdown-hover">
+              <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-blue">3</span></button>
+              <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+                <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
+                <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
+                <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
+              </div>
+            </div>
+
+            <div class="w3-bar-item w3-input w3-display-topmiddle w3-hover-none">
+              <form action="/action_page.php">
+
+                <input type="text" style="width:300px" placeholder="search"  name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+              </form>
+    </div>
+
+
+
+
+
+
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-top " title="Logout"><i class="fa fa-sign-out"></i></a>
+
+            {% endif %}
+            <a href="{%url 'profile_settings'%}" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-top " title="settings"><i class="fa fa-user"></i></a>
+
+            <a href="{% url 'search'%}" class="w3-bar-item w3-button w3-right w3-padding-large w3-display-top" title="search"><i class="fa fa-search"></i></a>
+
+          </div>
+        </div>
+
+        <style type="text/css">
+          .create-form {
+        	    width: 100%;
+        	    max-width: 100%;
+        	    padding: 15px;
+        	    margin: auto;
+          	}
+          	.submit-button{
+          		max-width: 200px;
+          	}
+        </style>
+<br>
+<br>
+<br>
+<br>
+        <div class="container">
+        	<div class="row">
+        		<div class="col-lg-7 offset-lg-1">
+        			<form class="create-form" method="post" enctype="multipart/form-data">{% csrf_token %}
+
+
+        				<!-- Body -->
+        				<div class="form-group">
+        					<label for="id_body">Content</label>
+        					<textarea class="form-control" rows="10" type="text" name="post" id="id_body" placeholder="Write something to post..." required></textarea>
+        				</div>
+
+
+
+        				<!-- Submit btn -->
+        				<button class="submit-button btn btn-lg btn-primary btn-block" type="submit">POST</button>
+        			</form>
+        		</div>
+        	</div>
+        </div>
+
+
+  <!--  <div class="container">
+      <br>
+      <br>
+      <br>
+    	<div class="row">
+    		<div class="col-lg-7 offset-lg-1">
+    			<form class="create-form" method="post" enctype="multipart/form-data">{% csrf_token %}
+            {{ form.as_p }}-->
+
+    				<!-- title
+    				<div class="form-group">
+    					<label for="id_title">Title</label>
+    					<input class="form-control" type="text" name="title" id="id_title" placeholder="Title" required autofocus>
+    				</div>
+    -->
+    				<!-- Body -->
+
+
+    				<!-- Image
+    				<div class="form-group">
+    					<label for="id_image">Image</label>
+    					<input  type="file" name="image" id="id_image" accept="image/*" required>
+    				</div>
+    -->
+    				<!-- Submit btn -->
+
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+{% load pinax_messages_tags %}
+{% block head_title %}Confirm Delete: {{ thread.subject }}{% endblock %}
+
+{% block body %}
+<div class="pinax-messages-delete-container">
+    <h2>{{ thread.subject }}</h2>
+
+    {% url "pinax_messages:thread_delete" thread.pk as post_url %}
+
+
+
+    <form action="{{ post_url }}" method="POST">
+        {% csrf_token %}
+        <div class="form-actions">
+            <a href="{% url "pinax_messages:inbox" %}" class="cancel"></a>
+            <button>delete</button>
+        </div>
+    </form>
+{% endblock %}

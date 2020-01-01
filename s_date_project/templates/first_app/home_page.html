@@ -18,9 +18,11 @@
     <a class="nav-link active" href="{% url 'first_app:reg_page' %}">Sign Up</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'first_app:user_login'%}">Log in</a>
-
-
+    {%if user is authenticate %}
+    <a class="nav-link" href="{% url 'profile_page'%}">Log in</a>
+    {%else%}
+<a class="nav-link" href="{% url 'user_login'%}">Log in</a>
+{%endif%}
 </nav>
 
 <p></p>
