@@ -1,0 +1,12 @@
+           <div class = 'container'>
+                <form method="post">
+                    {% csrf_token %}
+<!--                 {{ form.as_p }}-->
+                    <label for="delete user" >are you sure you want to Deactivate? if you do,uncheck this box:</label>
+
+<!--                    <input name="is_active" type="checkbox" id="delete user" value="{{ account_form.is_active }}">-->
+                    <input type="checkbox" name="is_active" id="delete user" class="form-control" placeholder="is_active"  value={{form.is_active}}>
+                    <button type = "submit" >submit</button>
+                </form>
+
+            </div>
