@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 {%load index%}
+=======
+
+>>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
 <!DOCTYPE html>
 {% load pinax_messages_tags %}
 <html lang="en" dir="ltr">
@@ -12,6 +16,7 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+<<<<<<< HEAD
     <style>
     {
     width:100%;
@@ -22,6 +27,8 @@
     display: inline-block;
 }
 </style>
+=======
+>>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
   </head>
   <body>
 
@@ -69,20 +76,48 @@
     <br>
     <br>
     <br>
+<<<<<<< HEAD
 <div class="col-sm-2 left-sidebar">
 </div>
 <div class="col-sm-2 left-sidebar">
 </div>
     <div class="w3-col m6">
+=======
+<div class="col-sm-3 left-sidebar">
+</div>
+<div class="col-sm-2 left-sidebar">
+</div>
+    <div class="w3-col m4">
+>>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
     <div class="container">
 
 
 
+<<<<<<< HEAD
 
                   <br>
                   <br>
 
 <div class="wv-button-placeholder"></div>
+=======
+      <form method="POST">
+              <!-- Very Important csrf Token -->
+              {% csrf_token %}
+              <div class = "form-group">
+                  <p>
+                  <h3>{{ form.as_p }}</h3>
+              </p>
+                  <br>
+                  <input type="Email" name="Email" id="Email" class="form-control" placeholder="Email address" required autofocus>
+                  <br>
+                  <input type="submit" name="InvitaionForm" class = 'btn btn-primary btn-lg' required autofocus>
+                      </div>
+                  </form>
+                  <br>
+                  <br>
+
+            <div class="wv-button-placeholder"></div>
+>>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
         <h1>Profile</h1>
         <img src="{{ user.profile_pic.url }}" width="240">
         <p>Username: {{ user.username }}</p>
@@ -96,6 +131,7 @@
         <p>Day Of Birth: {{ user.birthdate}}</p>
 
 
+<<<<<<< HEAD
     </div>
 
     {% shown_user user.pk request.user.id as shown_user_flag %}
@@ -145,5 +181,22 @@
         showTime: true
       });
     </script>
+=======
+
+
+    </div>
+    <div>
+    <a href="{% url "pinax_messages:message_user_create" user_id=user.id %}" class="btn btn-default">Message this user</a>
+    </div>
+
+<script async src="https://widget.websitevoice.com/IwjsEyoQZAsokQXVUyDK1Q"></script>
+<script>
+  window.wvData=window.wvData||{};function wvtag(a,b){wvData[a]=b;}
+  wvtag('id', 'IwjsEyoQZAsokQXVUyDK1Q');
+  wvtag('widget-style', {
+    backgroundColor: '#6D6D6D'
+  });
+</script>
+>>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
   </body>
 </html>

@@ -12,6 +12,20 @@ urlpatterns = [
     url(r'^profile/$', views.view_profile, name='view_profile'),
     url(r'^profile/(?P<pk>\d+)/$', views.view_profile, name='view_profile_with_pk'),
     url(r'^settings/$', views.account_view, name='profile_settings'),
+<<<<<<< HEAD
+=======
+    #    url(r'^profile_page/$', views.post, name='profile_page'),
+    # url(r'^success/$', views.account_view, name='success'),
+    # url(r'^events/$', views.events, name='events_page'),
+    # """#POSTS:
+    # url(r"^$", views.PostList.as_view(), name="all"),
+    # url(r"new/$", views.CreatePost.as_view(), name="create"),
+    # url(r"by/(?P<username>[-\w]+)/$",views.UserPosts.as_view(),name="for_user"),
+    # url(r"by/(?P<username>[-\w]+)/(?P<pk>\d+)/$",views.PostDetail.as_view(),name="single"),
+    # url(r"delete/(?P<pk>\d+)/$",views.DeletePost.as_view(),name="delete"),
+    # """
+    path('deactivate/', views.deactivate, name='deactivate'),
+>>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
     url(r'^news/$', views.news, name='news'),
     #    url(r'^profile_page/$', views.post, name='profile_page'),
     # url(r'^success/$', views.account_view, name='success'),

@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 {%load index%}
 
+=======
+>>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -63,6 +66,7 @@
         </div>
 
             <div class="w3-col m4">
+<<<<<<< HEAD
               <div class="container">
                 <form method="get" class="">
                   {{ filter.form.as_p }}
@@ -84,22 +88,45 @@
         <span class="w3-right w3-opacity">Sponsor</span>
         {%endif%}
 
+=======
+<div class="container">
+  <form method="get" class="">
+    {{ filter.form.as_p }}
+    <button type="submit">Search</button>
+  </form>
+</div>
+  {% for user in filter.qs %}
+
+  <div class="w3-container w3-card w3-white w3-round w3-margin" ><br>
+        <img src="{{user.profile_pic.url}}" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:70px">
+        <span class="w3-right w3-opacity">16 min</span>
+>>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
         <h4>{{user.firstname}} {{user.lastname}}</h4><br>
 
         <p>{{user.city}}, {{user.country}} <br>
         {{user.disabillity}}<br>
         {{user.hobbies}}</p>
 
+<<<<<<< HEAD
         {% if not user in friends %}
       <a href="{% url 'view_profile_with_pk' pk=user.pk %}">
         <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom">View Profile</button>
+=======
+        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>
+        {% if not user in friends %}
+        <a href="{% url 'send_friend_request' pk=user.pk %}">
+        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom">Add Friend</button>
+>>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
         </a>
         {% endif %}
 
       </div>
 
 
+<<<<<<< HEAD
 {%endif%}
+=======
+>>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
   {% endfor %}
 
 </div>
