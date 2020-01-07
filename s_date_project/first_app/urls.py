@@ -23,4 +23,5 @@ urlpatterns = [
     # url(r"delete/(?P<pk>\d+)/$",views.DeletePost.as_view(),name="delete"),
     # """
     path('deactivate/', views.deactivate, name='deactivate'),
+    url(r'^news/$', views.news, name='news'),
 ]

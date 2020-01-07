@@ -51,6 +51,8 @@ from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.views.generic import RedirectView
 
+def news(request):
+    return render(request,'first_app/news.html')
 
 def registration_view(request):
     registered = False

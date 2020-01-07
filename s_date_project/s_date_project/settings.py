@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'pinax.messages',
     'pinax.likes',
     'bootstrapform',
+    'pinax.announcements',
 
 
 ]
@@ -170,3 +171,5 @@ EMAIL_HOST_USER = 'sdateproject2019@gmail.com'
 EMAIL_HOST_PASSWORD = '12Almog12'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+PINAX_NEWS_IMAGE_THUMBNAIL_SPEC = "pinax.news.specs.ImageThumbnail"
+PINAX_NEWS_SECONDARY_IMAGE_THUMBNAIL_SPEC = "pinax.news.specs.SecondaryImageThumbnail"

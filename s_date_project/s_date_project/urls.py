@@ -59,6 +59,8 @@ urlpatterns = [
     url(r'^friend-request/delete/(?P<pk>[\w-]+)/$', views.delete_friend_request, name='delete_friend_request'),
     url(r"^messages/", include("pinax.messages.urls", namespace="pinax_messages")),
     url(r'^likes/', include(('pinax.likes.urls', 'pinax_likes'), namespace='pinax_likes')),
+    url(r'^news/$', views.news, name='news'),
+    url(r"^announcements/", include("pinax.announcements.urls", namespace="pinax_announcements")),
     #url(r"^likes/", include("pinax.likes.urls", namespace="pinax_likes")),
 #    path('events/',show_profile),
     # POSTS:
