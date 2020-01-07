@@ -52,6 +52,15 @@ from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.views.generic import RedirectView
 
+def friends(request):
+    user_list = Account.objects.all()
+    user_filter = UserFilter(request.GET, queryset=user_list)
+    friend = Friend.objects.get(current_user=request.user)
+    friends = friend.users.all()
+    args = {
+         'friends': friends, 'online_users':user_list
+        } #
+    return render(request, 'first_app/friends.html', args)
 def news(request):
     return render(request,'first_app/news.html')
 

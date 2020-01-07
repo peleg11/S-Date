@@ -26,7 +26,7 @@ SECRET_KEY = 'j8w4em92ax(h7*3rm&r_+&jd9+t6ggaowti7ctu+8+jt^m#hl_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.sdateproject.com', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['shmueat.pythonanywhere', '127.0.0.1']
 
 
 # Application definition

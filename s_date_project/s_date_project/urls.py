@@ -42,6 +42,7 @@ urlpatterns = [
     url(r'^liked/$', views.like_user, name='like_user'),
     url(r'^block/(?P<operation>.+)/(?P<pk>\d+)/$', views.block_user, name='block_user'),
     url(r'^search/$', views.search, name='search'),
+    url(r'^friends/$', views.friends, name='friends'),
     #url(r'^(?P<pk>[\w-]+)/$', post_detail, name='detail'),
     url(r'^notifications/', include('notify.urls', 'notifications')),
     url(r'^post_detail/(?P<pk>\d+)/$', views.detail_blog_view, name="post_detail"),
