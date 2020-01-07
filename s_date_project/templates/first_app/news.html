@@ -1,20 +1,22 @@
 
   {%  load  pinax_announcements_tags  %}
-
+<div class="article post-content blog-body post_content content section">
 <h3>Articles</h3>
-
+<div class="wv-button-placeholder"></div>
 
 <body>
   {% announcements as announcement_list %}
 
   {% if announcement_list %}
+
       <div class="container">
           {% for announcement in announcement_list %}
+
               <div class="announcement">
-                  <div class="wv-button-placeholder"></div>
+
                   <strong>{{ announcement.title }}</strong><br />
                   {{ announcement.content }}
-
+              </div>
               </div>
 
           {% endfor %}

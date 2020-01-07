@@ -96,13 +96,23 @@
 <br>
 
 <div class = 'container'>
+
  <form method="post" enctype="multipart/form-data">
 
          {% csrf_token %}
+
          <label for="invite_user" >Enter email address and invite other friends to join S-date!</label>
-      <p>
+
+    <div class="article post-content blog-body post_content content section">
+         <p hidden>here you can update your information:
+         email,username,first and last name,country,city,date of birth,disability ,hobbies, and upload or change profile picture!
+         also, you can review and edit you posts!</p>
+<!--<div class="wv-button-placeholder"></div>-->
+
+     </div>
+
              <h3>{{ form.as_p }}</h3>
-         </p>
+
              <br>
              <input type="Email" name="Email" id="invite_user" class="form-control" placeholder="Email address" required autofocus>
              <br>
@@ -173,7 +183,7 @@
   <a class="m-auto" href="/first_app/deactivate">Deactivate account</a>
 
 </div>
-<div class="wv-button-placeholder"></div>
+
 <div class="container mt-4 p-4">
   <div class="row">
     <div class="blog-posts">

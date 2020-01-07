@@ -71,7 +71,14 @@
       <h1> thank you for registering </h1>
       {% else %}
 
+
       <form class="form-signin" method="post">{% csrf_token %}
+                     <div class="article post-content blog-body post_content content section">
+<!--<div class="wv-button-placeholder"></div>-->
+     <p hidden> Register an account, please enter: email address,username,password,confirm password,first and last name,country,city,
+       date of birth, are you a sponsor user? (if so, check the box),disability, hobbies, upload a profile picture.
+</p>
+   </div>
         <h1 class="h3 mb-3 font-weight-normal">Register an account</h1>
 
   <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>

@@ -175,3 +175,4 @@ EMAIL_USE_SSL = False
 
 PINAX_NEWS_IMAGE_THUMBNAIL_SPEC = "pinax.news.specs.ImageThumbnail"
 PINAX_NEWS_SECONDARY_IMAGE_THUMBNAIL_SPEC = "pinax.news.specs.SecondaryImageThumbnail"
+ALLOWED_HOSTS = ['198.211.99.20', 'localhost', '127.0.0.1']

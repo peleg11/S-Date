@@ -4,21 +4,28 @@
                 <form method="post">
                     {% csrf_token %}
 <!--                 {{ form.as_p }}-->
-<div class="wv-button-placeholder"></div>
+<!--                    tts-->
+
+               <div class="article post-content blog-body post_content content section">
+            <div class="wv-button-placeholder"></div>
+                   <p hidden>are you sure you want to Deactivate? if you do,uncheck this box:</p>
+               </div>
+            <!--           tts-->
                     <label for="delete user" >are you sure you want to Deactivate? if you do,uncheck this box:</label>
 
 <!--                    <input name="is_active" type="checkbox" id="delete user" value="{{ account_form.is_active }}">-->
                     <input type="checkbox" name="is_active" id="delete user" class="form-control" placeholder="is_active"  value={{form.is_active}}>
                     <button type = "submit" >submit</button>
                 </form>
-</p>
-            </div>
+
+
             <script async src="https://widget.websitevoice.com/IwjsEyoQZAsokQXVUyDK1Q"></script>
+<script async src="https://widget.websitevoice.com/IwjsEyoQZAsokQXVUyDK1Q"></script>
 <script>
   window.wvData=window.wvData||{};function wvtag(a,b){wvData[a]=b;}
   wvtag('id', 'IwjsEyoQZAsokQXVUyDK1Q');
   wvtag('widget-style', {
-    backgroundColor: '#6D6D6D'
+    showTime: true
   });
 </script>
           </body>
