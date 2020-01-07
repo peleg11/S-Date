@@ -1,4 +1,8 @@
+{%extends "base2.html"%}
 {% load static %}
+
+
+
 
 <!DOCTYPE html>
 <html>
@@ -9,44 +13,89 @@
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
 <link rel="stylesheet" href="{% static "css/style2.css" %}">
 
 
 
 <body class="w3-theme-l5" onload="renderDate()">
+  <script>
+   $(document).ready(function(){
+        function updateText(btn, newCount, verb){
+        btn.text(newCount + " " + verb)
+    }
+    $(".like-btn").click(function(e){
+      e.preventDefault()
+      var this_ = $(this)
+      var likeUrl = this_.attr("data-href")
+      var likeCount = parseInt(this_.attr("data-likes")) | 0
+      var addLike = likeCount + 1
+      var removeLike = likeCount - 1
+      if (likeUrl){
+         $.ajax({
+          url: likeUrl,
+          method: "GET",
+          data: {},
+          success: function(data){
+            console.log(data)
+            var newLikes;
+            if (data.liked){
+                updateText(this_, addLike, "Unlike")
+            } else {
+                updateText(this_, removeLike, "Like")
+                // remove one like
+            }
+          }, error: function(error){
+            console.log(error)
+            console.log("error")
+          }
+        })
+      }
 
+    })
+  })
+  </script>
+  <script>
+  $(document).ready(function(){
+    {% block jquery %}{% endblock %}
+  })
+  </script>
   <!-- Navbar -->
   <div class="w3-top">
     <div class="w3-bar w3-theme-d2 w3-left-align w3-large w3-padding-12">
       <a href="{% url 'view_profile' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="My Profile">
         <img src="{{ request.user.profile_pic.url }}" class="w3-circle" style="height:31px;width:35px" alt="Avatar">  My Profile</a>
         <a href="{% url 'profile_page' %}" class="w3-bar-item w3-button w3-padding-large w3-display-top"  title="Home"><i class="fa fa-home" ></i></a>
-        <a href="#" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Messages"><i class="fa fa-envelope"></i></a>
+        <a href="{% url 'pinax_messages:inbox' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top"><i class="fa fa-envelope"></i>Message</a>
         <a href="" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Events"><i class="fa fa-calendar"></i></a>
         <div class="w3-dropdown-hover">
           <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-blue">3</span></button>
           <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-            <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
-            <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
-            <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
           </div>
         </div>
 
-        <div class="w3-bar-item w3-input w3-display-topmiddle w3-hover-none">
+        <div class="w3-bar-item w3-input w3-display-topmiddle w3-hover-none w3-text-black">
           <form action="/action_page.php">
-            <input type="text" style="width:400px" placeholder="search"  name="search">
-            <button type="submit"><i class="fa fa-search"></i></button>
+
+            <input type="text" style="width:300px" placeholder="search for posts"  name="search">
+  <button type="submit"><i class="fa fa-search"></i></button>
           </form>
-        </div>
+</div>
+
+
 
 
 
 
         {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-to " title="Logout"><i class="fa fa-sign-out"></i></a>
+        <a href="{% url 'logout' %}" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-top " title="Logout"><i class="fa fa-sign-out"></i></a>
 
         {% endif %}
-        <a href="{%url 'profile_settings'%}" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-to " title="settings"><i class="fa fa-user"></i></a>
+        <a href="{%url 'profile_settings'%}" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-top " title="settings"><i class="fa fa-user"></i></a>
+
+        <a href="{% url 'search'%}" class="w3-bar-item w3-button w3-right w3-padding-large w3-display-top" title="search"><i class="fa fa-search"></i></a>
+
       </div>
     </div>
 
@@ -96,20 +145,29 @@
             </div>
             <br>
 
+
+                        {% for r_request in rec_friend_requests %}
             <div class="w3-card w3-round w3-white w3-center">
 
               <p>Friend Request</p>
-              <img src="/w3images/avatar6.png" alt="Avatar" style="width:50%"><br>
-              <span>Jane Doe</span>
-              <div class="w3-row w3-opacity">
-                <div class="w3-half">
-                  <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
-                </div>
-                <div class="w3-half">
-                  <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
-                </div>
-              </div>
-            </div>
+
+			<p><a href="{% url 'view_profile_with_pk' pk=r_request.from_user.pk %}">{{ r_request.from_user.firstname }} {{ r_request.from_user.lastname }}</a></p>
+      <img src="{{r_request.from_user.profile_pic.url}}" alt="Avatar" style="width:50%"><br>
+<br>
+      <div class="w3-row w3-opacity">
+        <div class="w3-half">
+          <small><a class='btn btn-primary' href="{% url 'change_friends' operation='add' pk=r_request.from_user.pk %}">Accept</a></small>
+        </div>
+        <div class="w3-half">
+            <small><a class='btn btn-warning' href="{% url 'delete_friend_request' pk=r_request.from_user.pk %}">Ignore</a></small>
+            <br>
+        </div>
+      </div>
+    </div>
+    <br>
+		{% endfor %}
+
+
           </div>
           <br>
 
@@ -143,16 +201,23 @@
 
 
           {% for post in posts %}
-          <div class="w3-row-padding">
-            <div class="w3-col m12">
-              <div class="w3-card w3-round w3-white">
-                <div class="w3-container w3-padding">
-            <h1>{{ post.post }}</h1>
-            <p>Posted by {{ post.user.email }} on {{ post.created }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+          <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+            <img src="{{post.user.profile_pic.url}}" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:70px">
+            <span class="w3-right w3-opacity">{{ post.created }}</span><br>
+             <hr class="w3-clear">
+             <p><h3>{{ post.post }}</h4></p>
+<span class="w3-left w3-opacity"><p><h5>Posted by {{ post.user.firstname }} {{ post.user.lastname }} </h5></p></span>
+
+<span class="w3-right">  {{total_likes}} Like{{ total_likes|pluralize}}</span>
+<form action ="{%url 'like_post' %}" method="post">
+  {% csrf_token %}
+  {% if is_liked %}
+             <button type="submit" class="w3-button w3-theme-d1 w3-margin-bottom w3-right" name="post_id" value="{{post.id}}"><i class="fa fa-thumbs-down"></i> Dislike</button>
+{% else %}
+<button type="submit" class="w3-button w3-theme-d1 w3-margin-bottom w3-right" name="post_id" value="{{post.id}}"><i class="fa fa-thumbs-up"></i> Like</button>
+{% endif %}
+</form>
+           </div>
     <br>
 
 
@@ -173,18 +238,24 @@
                 <h3>My Friends</h3>
               </div>
               <div class="w3-row-padding">
+
                 {% for friend in friends  %}
 
 
-              {%if friend.is_authenticate%}
+              {%if friend in online_users%}
                 <div class="col-sm-12 chat-user online">
                   {%else%}
                   <div class="col-sm-12 chat-user">
                     {%endif%}
+
                   <a href="#">
+                      <a href="{% url 'view_profile_with_pk' pk=friend.pk %}">
                     <img src="{{ friend.profile_pic.url }}" class="pull-left"/>
+
                     &nbsp;
+
                     {{friend.firstname}} {{friend.lastname}}
+
                   </a>
                 </div>
 
@@ -193,22 +264,52 @@
               </div>
             </div>
           </div>
+<h2> test for online </h2>
+{% for online in online_users%}
+{{online.username}}
+{%endfor%}
+
           <h2>Other People</h2>
-                 {% for user in users %}
-                 {% if not user in friends %}
+
+{% for user in sent_friend_requests %}
+
+
                      <a href="{% url 'view_profile_with_pk' pk=user.pk %}">
-                         <h4>{{user.firstname}} {{user.lastname}}</h4>
+                         <h4>{{user.to_user.firstname}} {{user.to_user.lastname}}</h4>
                      </a>
-                     {%endif%}
-                     {% if not user in friends %}
-                     <a href="{% url 'change_friends' operation='add' pk=user.pk %}">
-                     <button type="button" class="btn btn-success">Add Friend</button>
-                     </a>
+
+                       			<small><a class="btn btn-warning" href="{% url 'cancel_friend_request' pk=user.pk %}">Cancel Request</a></small>
+                              {%if not user.to_user in friends and user.to_user in sent_friend_requests %}
+                              <a href="{% url 'view_profile_with_pk' pk=user.pk %}">
+                                  <h4>{{user.to_user.firstname}} {{user.to_user.lastname}}</h4>
+                              </a>
+                                  <small><a class='btn btn-primary' href="{% url 'send_friend_request'  pk=user.pk %}">Add Friend</a></small>
+                                  {%endif%}
+                            {% endfor %}
+                            {% for user in users  %}
+{%if not user.to_user in sent_friend_requests and not user in friends %}
+
+
+                        <a href="{% url 'view_profile_with_pk' pk=user.pk %}">
+                            <h4>{{user.firstname}} {{user.lastname}}</h4>
+                        </a>
+                            <small><a class='btn btn-primary' href="{% url 'send_friend_request'  pk=user.pk %}">Add Friend</a></small>
+
+
                      {% endif %}
+
                  {% endfor %}
+
+                 {% for user in sent_requests%}
+                 <ul>
+
+                 			<li>{{ user }}</li>
+
+                 		</ul>
+                    {%endfor%}
                  <h2>Friends</h2>
                  {% for friend in friends %}
-                 {% if not user in friends and not friend.is_admin %}
+                 {% if  not friend.is_admin %}
 
 
                      <a href="{% url 'view_profile_with_pk' pk=friend.pk %}">
@@ -225,7 +326,11 @@
       </div>
     </div>
   </div>
+
 </div>
+{% include 'first_app/js.html' %}
+
+
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script src="{% static "scripts/stt1.js"%}"></script>
 <script src="{% static "scripts/stt2.js"%}"> </script>
@@ -233,5 +338,11 @@
 <script src="{% static "scripts/users_list.js"%}"> </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script id="free_accessibility_plugin_script" src="https://accessibility.f-static.com/site/free-accessibility-plugin/accessibility.min.js?lan=en&place=bottom-right&distance=50" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+  {% include 'first_app/footer.html' %}
 </body>
 </html>

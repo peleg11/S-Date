@@ -7,3 +7,4 @@ from . import models
 admin.site.register(models.Account)
 admin.site.register(models.Post)
 admin.site.register(models.Friend)
+admin.site.register(models.FriendRequest)

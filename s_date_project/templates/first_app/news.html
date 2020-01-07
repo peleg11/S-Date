@@ -1,0 +1,32 @@
+
+  {%  load  pinax_announcements_tags  %}
+
+<h3>Articles</h3>
+
+
+<body>
+  {% announcements as announcement_list %}
+
+  {% if announcement_list %}
+      <div class="container">
+          {% for announcement in announcement_list %}
+              <div class="announcement">
+                  <div class="wv-button-placeholder"></div>
+                  <strong>{{ announcement.title }}</strong><br />
+                  {{ announcement.content }}
+
+              </div>
+
+          {% endfor %}
+
+      </div>
+  {% endif %}
+  <script async src="https://widget.websitevoice.com/IwjsEyoQZAsokQXVUyDK1Q"></script>
+<script>
+  window.wvData=window.wvData||{};function wvtag(a,b){wvData[a]=b;}
+  wvtag('id', 'IwjsEyoQZAsokQXVUyDK1Q');
+  wvtag('widget-style', {
+    showTime: true
+  });
+</script>
+  </body>

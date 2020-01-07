@@ -1,5 +1,6 @@
-
+{%load index%}
 <!DOCTYPE html>
+{% load pinax_messages_tags %}
 <html lang="en" dir="ltr">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
@@ -11,51 +12,77 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <style>
+    {
+    width:100%;
+    text-align: center;
+}
+.inner
+{
+    display: inline-block;
+}
+</style>
   </head>
   <body>
-    <div class="w3-top">
-      <div class="w3-bar w3-theme-d2 w3-left-align w3-large w3-padding-12">
-        <a href="{% url 'view_profile' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="My Profile">
-          <img src="{{ request.user.profile_pic.url }}" class="w3-circle" style="height:31px;width:35px" alt="Avatar">  My Profile</a>
-          <a href="{% url 'profile_page' %}" class="w3-bar-item w3-button w3-padding-large w3-display-top"  title="Home"><i class="fa fa-home" ></i></a>
-          <a href="#" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Messages"><i class="fa fa-envelope"></i></a>
-          <a href="" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Events"><i class="fa fa-calendar"></i></a>
-          <div class="w3-dropdown-hover">
-            <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-blue">3</span></button>
-            <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-              <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
-              <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
-              <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
+
+      <!-- Navbar -->
+      <div class="w3-top">
+        <div class="w3-bar w3-theme-d2 w3-left-align w3-large w3-padding-12">
+          <a href="{% url 'view_profile' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="My Profile">
+            <img src="{{ request.user.profile_pic.url }}" class="w3-circle" style="height:31px;width:35px" alt="Avatar">  My Profile</a>
+            <a href="{% url 'profile_page' %}" class="w3-bar-item w3-button w3-padding-large w3-display-top"  title="Home"><i class="fa fa-home" ></i></a>
+            <a href="#" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Messages"><i class="fa fa-envelope"></i></a>
+            <a href="" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Events"><i class="fa fa-calendar"></i></a>
+            <div class="w3-dropdown-hover">
+              <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-blue">3</span></button>
+              <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+                <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
+                <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
+                <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
+              </div>
             </div>
+
+            <div class="w3-bar-item w3-input w3-display-topmiddle w3-hover-none">
+              <form action="/action_page.php">
+
+                <input type="text" style="width:300px" placeholder="search"  name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+              </form>
+    </div>
+
+
+
+
+
+
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-top " title="Logout"><i class="fa fa-sign-out"></i></a>
+
+            {% endif %}
+            <a href="{%url 'profile_settings'%}" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-top " title="settings"><i class="fa fa-user"></i></a>
+
+            <a href="{% url 'search'%}" class="w3-bar-item w3-button w3-right w3-padding-large w3-display-top" title="search"><i class="fa fa-search"></i></a>
+
           </div>
-
-          <div class="w3-bar-item w3-input w3-display-topmiddle w3-hover-none">
-            <form action="/action_page.php">
-              <input type="text" style="width:400px" placeholder="search"  name="search">
-              <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-          </div>
-
-
-
-
-          {% if user.is_authenticated %}
-          <a href="{% url 'logout' %}" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-to " title="Logout"><i class="fa fa-sign-out"></i></a>
-
-          {% endif %}
-          <a href="{%url 'profile_settings'%}" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-to " title="settings"><i class="fa fa-user"></i></a>
         </div>
-      </div>
 
     <br>
     <br>
     <br>
-<div class="col-sm-3 left-sidebar">
+<div class="col-sm-2 left-sidebar">
 </div>
 <div class="col-sm-2 left-sidebar">
 </div>
-    <div class="w3-col m4">
+    <div class="w3-col m6">
     <div class="container">
+
+
+
+
+                  <br>
+                  <br>
+
+<div class="wv-button-placeholder"></div>
         <h1>Profile</h1>
         <img src="{{ user.profile_pic.url }}" width="240">
         <p>Username: {{ user.username }}</p>
@@ -68,8 +95,55 @@
         <p>Hobbies: {{ user.hobbies }}</p>
         <p>Day Of Birth: {{ user.birthdate}}</p>
 
-    </div>
+
     </div>
 
+    {% shown_user user.pk request.user.id as shown_user_flag %}
+      {% liked_user user.pk request.user.id as liked_user_flag %}
+      {% if not shown_user_flag%}
+  <p>  <form action ="{% url 'like_user'%}" class="" method="post">
+      {% csrf_token%}
+
+
+       {% if liked_user_flag %}
+
+     <button type="submit" class="w3-button w3-theme-d2 " name="user_id" value="{{user.id}}"><i class="fa fa-thumbs-down"></i> Dislike</button> {{user.total_likes}} Like{{user.total_likes|pluralize}}
+    {%else%}
+    <button type="submit" class="w3-button w3-theme-d2 " name="user_id" value="{{user.id}}"><i class="fa fa-thumbs-up"></i> Like</button> {{user.total_likes}} Like{{user.total_likes|pluralize}}
+    {% endif %}
+  </form></p>
+    <a href="{% url "pinax_messages:message_user_create" user_id=user.id %}" class="w3-button w3-theme-d2">Message this user</a>
+
+
+            {% block_user user.pk request.user.id as block_user_flag %}
+
+                    {% if not user in friends %}
+                    <a href="{% url 'send_friend_request' pk=user.pk %}">
+                  <button type="button" class="w3-button w3-theme-d2">Add Friend</button>
+                    </a>
+                    {%else%}
+                    <a href="{% url 'change_friends' operation='remove' pk=user.pk %}">
+                   <button type="button" class="w3-button w3-theme-d2">Remove Friend</button>
+                    </a>
+                    {% endif %}
+
+                      {%if not block_user_flag%}
+                      <a href="{% url 'block_user' operation='add' pk=user.pk %}">
+                  <button type="button" class="w3-button w3-theme-d2">Block User</button></a>
+                    {%else%}
+                    <a href="{% url 'block_user' operation='remove' pk=user.pk %}">
+                 <button type="button" class="w3-button w3-theme-d2">Unblock User</button>
+                  </a>
+                  {%endif%}
+{%endif%}
+    </div>
+    <script async src="https://widget.websitevoice.com/IwjsEyoQZAsokQXVUyDK1Q"></script>
+    <script>
+      window.wvData=window.wvData||{};function wvtag(a,b){wvData[a]=b;}
+      wvtag('id', 'IwjsEyoQZAsokQXVUyDK1Q');
+      wvtag('widget-style', {
+        showTime: true
+      });
+    </script>
   </body>
 </html>

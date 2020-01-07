@@ -26,7 +26,7 @@ SECRET_KEY = 'j8w4em92ax(h7*3rm&r_+&jd9+t6ggaowti7ctu+8+jt^m#hl_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.sdateproject.com', '127.0.0.1:8000']
 
 
 # Application definition
@@ -39,9 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'first_app',
-    'pinax.calendars',
-    'imagekit',
-    'pinax.events'
+    'rest_framework',
+    'pinax.messages',
+    'pinax.likes',
+    'bootstrapform',
+    'notify',
+    'pinax.announcements',
+
+
 ]
 
 MIDDLEWARE = [
@@ -52,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 's_date_project.urls'
@@ -67,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'pinax.messages.context_processors.user_messages',
             ],
         },
     },
@@ -74,6 +81,8 @@ TEMPLATES = [
 ]
 
 AUTH_USER_MODEL = 'first_app.Account'
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 WSGI_APPLICATION = 's_date_project.wsgi.application'
 
@@ -117,7 +126,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 
 ]
-
+PINAX_LIKES_LIKABLE_MODELS = {
+        "app.Model": {}  # override default config settings for each model in this dict
+    }
+AUTHENTICATION_BACKENDS = [
+        # other backends
+        'pinax.likes.auth_backends.CanLikeBackend',
+    ]
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -137,8 +152,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-PINAX_EVENTS_IMAGE_THUMBNAIL_SPEC = "pinax.events.specs.ImageThumbnail"
-PINAX_EVENTS_SECONDARY_IMAGE_THUMBNAIL_SPEC = "pinax.events.specs.SecondaryImageThumbnail"
+
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
@@ -150,3 +164,14 @@ MEDIA_URL = '/media/'
 LOGIN_URL = 'first_app/user_login'
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'sdateproject2019@gmail.com'
+EMAIL_HOST_PASSWORD = '12Almog12'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+
+PINAX_NEWS_IMAGE_THUMBNAIL_SPEC = "pinax.news.specs.ImageThumbnail"
+PINAX_NEWS_SECONDARY_IMAGE_THUMBNAIL_SPEC = "pinax.news.specs.SecondaryImageThumbnail"

@@ -1,6 +1,6 @@
 function startConverting()
        {
-         document.getElementById("re").style.visibility = "vissible";
+         document.getElementById("re").style.visibility = "hidden";
          var r=document.getElementById('result');
          var spr=new webkitSpeechRecognition(); //Initialisation of web Kit
            spr.continuous=true; //True if continous conversion is needed, false to stop transalation when paused
