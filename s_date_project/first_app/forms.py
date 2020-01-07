@@ -12,12 +12,9 @@ from .models import Account, Post
 
 class InvitaionForm(forms.Form):
     Email = forms.EmailField(max_length=254, help_text='Required. Add a valid email address.')
-<<<<<<< HEAD
     #class Meta:
      #  model = Account
       # fields = ('email',)
-=======
->>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
 
     def __str__(self):
         return self.Email
@@ -30,11 +27,7 @@ class RegistrationForm(UserCreationForm):
         model = Account
         fields = (
             'email', 'username', 'password1', 'password2', 'firstname', 'lastname', 'country', 'city', 'birthdate',
-<<<<<<< HEAD
             'disabillity', 'hobbies','is_sponsor', 'profile_pic')
-=======
-            'disabillity', 'hobbies', 'profile_pic')
->>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
 
 
 class AccountAuthenticationForm(forms.ModelForm):
@@ -56,13 +49,8 @@ class AccountUpdateForm(forms.ModelForm):
     class Meta:
         model = Account
         fields = (
-<<<<<<< HEAD
             'email', 'username', 'firstname', 'lastname', 'country', 'city', 'birthdate', 'disabillity','is_sponsor', 'hobbies',
             'profile_pic',  )
-=======
-            'email', 'username', 'firstname', 'lastname', 'country', 'city', 'birthdate', 'disabillity', 'hobbies',
-            'profile_pic', 'is_active')
->>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
 
     def clean_email(self):
         email = self.cleaned_data['email']
@@ -145,11 +133,7 @@ class CreateBlogPostForm(forms.ModelForm):
 #        )
 #    )
 
-<<<<<<< HEAD
 class active_form(forms.ModelForm):
-=======
-class active_form(AccountUpdateForm):
->>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
     class Meta:
         model = Account
         fields = ('is_active',)

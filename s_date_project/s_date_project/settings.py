@@ -43,10 +43,7 @@ INSTALLED_APPS = [
     'pinax.messages',
     'pinax.likes',
     'bootstrapform',
-<<<<<<< HEAD
     'notify',
-=======
->>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
     'pinax.announcements',
 
 
@@ -175,9 +172,6 @@ EMAIL_HOST_USER = 'sdateproject2019@gmail.com'
 EMAIL_HOST_PASSWORD = '12Almog12'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-<<<<<<< HEAD
 
-=======
->>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
 PINAX_NEWS_IMAGE_THUMBNAIL_SPEC = "pinax.news.specs.ImageThumbnail"
 PINAX_NEWS_SECONDARY_IMAGE_THUMBNAIL_SPEC = "pinax.news.specs.SecondaryImageThumbnail"

@@ -39,16 +39,11 @@ urlpatterns = [
     url(r'^settings/$', views.account_view, name='profile_settings'),
     #url(,views.,name='post_detail')
     url(r'^like/$', views.like_post, name='like_post'),
-<<<<<<< HEAD
     url(r'^liked/$', views.like_user, name='like_user'),
     url(r'^block/(?P<operation>.+)/(?P<pk>\d+)/$', views.block_user, name='block_user'),
     url(r'^search/$', views.search, name='search'),
     #url(r'^(?P<pk>[\w-]+)/$', post_detail, name='detail'),
     url(r'^notifications/', include('notify.urls', 'notifications')),
-=======
-    url(r'^search/$', views.search, name='search'),
-    #url(r'^(?P<pk>[\w-]+)/$', post_detail, name='detail'),
->>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
     url(r'^post_detail/(?P<pk>\d+)/$', views.detail_blog_view, name="post_detail"),
     #url(r'^(?P<pk>[\w-]+)/like/$', views.PostLikeToggle, name='like-toggle'),
     #url(r'^api/(?P<pk>[\w-]+)/like/$', views.PostLikeAPIToggle, name='like-api-toggle'),
@@ -67,11 +62,7 @@ urlpatterns = [
     url(r'^friend-request/delete/(?P<pk>[\w-]+)/$', views.delete_friend_request, name='delete_friend_request'),
     url(r"^messages/", include("pinax.messages.urls", namespace="pinax_messages")),
     url(r'^likes/', include(('pinax.likes.urls', 'pinax_likes'), namespace='pinax_likes')),
-<<<<<<< HEAD
         url(r'^news/$', views.news, name='news'),
-=======
-    url(r'^news/$', views.news, name='news'),
->>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
     url(r"^announcements/", include("pinax.announcements.urls", namespace="pinax_announcements")),
     #url(r"^likes/", include("pinax.likes.urls", namespace="pinax_likes")),
 #    path('events/',show_profile),

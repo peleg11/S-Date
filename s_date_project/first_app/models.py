@@ -11,7 +11,6 @@ from django.db.models.base import ObjectDoesNotExist
 from django.contrib.sessions.models import Session
 from django.utils import timezone
 
-<<<<<<< HEAD
 from django.db.models.signals import pre_save
 from .utils import unique_slug_generator
 
@@ -21,23 +20,12 @@ from django.contrib.contenttypes.models import ContentType
 from django.utils.encoding import python_2_unicode_compatible
 
 
-=======
-from django.contrib.contenttypes.fields import GenericForeignKey
-from django.contrib.contenttypes.models import ContentType
-from django.utils.encoding import python_2_unicode_compatible
-
-
->>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
 # import misaka
 
 # User = get_user_model()
 # Create your models here.
 class MyAccountManager(BaseUserManager):
-<<<<<<< HEAD
     def create_user(self, email, username, firstname, lastname, country, city, birthdate, disabillity, hobbies, is_sponsor, profile_pic,
-=======
-    def create_user(self, email, username, firstname, lastname, country, city, birthdate, disabillity, hobbies,
->>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
                     password=None):
         if not email:
             raise ValueError('Users must have an email address')
@@ -56,12 +44,8 @@ class MyAccountManager(BaseUserManager):
             birthdate=birthdate,
             disabillity=disabillity,
             hobbies=hobbies,
-<<<<<<< HEAD
             is_sponsor=is_sponsor,
             profile_pic=profile_pic,
-=======
-            # profile_pic=profile_pic,
->>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
 
         )
 
@@ -73,11 +57,7 @@ class MyAccountManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, username, password, firstname, lastname, country, city, birthdate, disabillity,
-<<<<<<< HEAD
                          hobbies, profile_pic):
-=======
-                         hobbies):
->>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
         # user=self.model(
         user = self.create_user(
             email=self.normalize_email(email),
@@ -90,19 +70,12 @@ class MyAccountManager(BaseUserManager):
             birthdate=birthdate,
             disabillity=disabillity,
             hobbies=hobbies,
-<<<<<<< HEAD
             profile_pic=profile_pic,
-=======
-            # profile_pic=profile_pic,
->>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
         )
         user.is_admin = True
         user.is_staff = True
         user.is_superuser = True
-<<<<<<< HEAD
         user.is_sponsor= False
-=======
->>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
         user.save(using=self._db)
         return user
 
@@ -128,15 +101,11 @@ class Account(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
-<<<<<<< HEAD
     is_sponsor = models.BooleanField(default=False)
-=======
->>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
     birthdate = models.DateTimeField(verbose_name='birthdate', null=True, blank=True)
     disabillity = models.CharField(max_length=200, choices=STATUS, default='other', )
     hobbies = models.CharField(max_length=255, default='None')
     profile_pic = models.ImageField(upload_to='profile_pics', blank=True, default='/profile_pics/blank_profile_pic.jpg')
-<<<<<<< HEAD
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='user_likes')
     blocked = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='blocked_users')
 
@@ -151,14 +120,6 @@ class Account(AbstractBaseUser):
     def total_likes(self):
         return self.likes.count()
 
-=======
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'firstname', 'lastname', 'country', 'city', 'birthdate', 'disabillity', 'hobbies']
-
-    objects = MyAccountManager()
-
->>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
     def __str__(self):
         return self.email
 
@@ -197,7 +158,6 @@ class Post(models.Model):
         return self.likes.count()
 
     def get_absolute_url(self):
-<<<<<<< HEAD
         return reverse('profile_page')#, args={self.id})
 
 def pre_save_post_receiver(sender, instance, *args, **kwargs):
@@ -206,9 +166,6 @@ def pre_save_post_receiver(sender, instance, *args, **kwargs):
 
 pre_save.connect(pre_save_post_receiver, sender=Post)
 
-=======
-        return reverse('profile_page', args={self.id})
->>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
 
 
 class Friend(models.Model):

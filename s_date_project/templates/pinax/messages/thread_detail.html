@@ -18,11 +18,7 @@
     <a href="{% url 'view_profile' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="My Profile">
       <img src="{{ request.user.profile_pic.url }}" class="w3-circle" style="height:31px;width:35px" alt="Avatar">  My Profile</a>
       <a href="{% url 'profile_page' %}" class="w3-bar-item w3-button w3-padding-large w3-display-top"  title="Home"><i class="fa fa-home" ></i></a>
-<<<<<<< HEAD
       <a href="{% url 'pinax_messages:inbox' %}"class="w3-bar-item w3-button  w3-padding-large w3-display-top"><i class="fa fa-envelope"></i>Message</a>
-=======
-      <a href="{% url 'pinax_messages:inbox' %}"><i class="fa fa-envelope"></i>Message</a>
->>>>>>> a802adceee684354cefa2e5b2967b4f476ff8382
       <a href="" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Events"><i class="fa fa-calendar"></i></a>
       <div class="w3-dropdown-hover">
         <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-blue">3</span></button>
