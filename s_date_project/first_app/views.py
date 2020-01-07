@@ -63,6 +63,11 @@ def friends(request):
     return render(request, 'first_app/friends.html', args)
 def news(request):
     return render(request,'first_app/news.html')
+def first_article(request):
+    return render(request,'first_app/first_article.html')
+def second_article(request):
+    return render(request,'first_app/second_article.html')
+
 
 
 def registration_view(request):

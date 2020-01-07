@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'bootstrapform',
     'notify',
     'pinax.announcements',
+    'imagekit',
+    'pinax.news',
 
 
 ]
