@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'pinax.announcements',
     'imagekit',
     'pinax.news',
+    'pinax.events'
 
 
 ]
@@ -174,7 +175,8 @@ EMAIL_HOST_USER = 'sdateproject2019@gmail.com'
 EMAIL_HOST_PASSWORD = '12Almog12'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-
+PINAX_EVENTS_IMAGE_THUMBNAIL_SPEC = "pinax.events.specs.ImageThumbnail"
+PINAX_EVENTS_SECONDARY_IMAGE_THUMBNAIL_SPEC = "pinax.events.specs.SecondaryImageThumbnail"
 PINAX_NEWS_IMAGE_THUMBNAIL_SPEC = "pinax.news.specs.ImageThumbnail"
 PINAX_NEWS_SECONDARY_IMAGE_THUMBNAIL_SPEC = "pinax.news.specs.SecondaryImageThumbnail"
 ALLOWED_HOSTS = ['198.211.99.20', 'localhost', '127.0.0.1']

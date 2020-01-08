@@ -22,7 +22,7 @@
       <img src="{{ request.user.profile_pic.url }}" class="w3-circle" style="height:31px;width:35px" alt="Avatar">  My Profile</a>
       <a href="{% url 'profile_page' %}" class="w3-bar-item w3-button w3-padding-large w3-display-top"  title="Home"><i class="fa fa-home" ></i></a>
       <a href="{% url 'pinax_messages:inbox' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Messages"><i class="fa fa-envelope"></i></a>
-      <a href="" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Events"><i class="fa fa-calendar"></i></a>
+      <a href="{% url 'events' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Events"><i class="fa fa-calendar"></i></a>
               <a href="{% url 'news' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="News"><i class="fa fa-book"></i></a>
               <a href="{% url 'friends' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Friends"><i class="fa fa-users"></i></a>
       <div class="w3-dropdown-hover">

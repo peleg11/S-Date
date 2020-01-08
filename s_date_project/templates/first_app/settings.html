@@ -58,7 +58,7 @@
           <img src="{{ request.user.profile_pic.url }}" class="w3-circle" style="height:31px;width:35px" alt="Avatar">  My Profile</a>
           <a href="{% url 'profile_page' %}" class="w3-bar-item w3-button w3-padding-large w3-display-top"  title="Home"><i class="fa fa-home" ></i></a>
           <a href="#" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Messages"><i class="fa fa-envelope"></i></a>
-          <a href="" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Events"><i class="fa fa-calendar"></i></a>
+          <a href="{% url 'events' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Events"><i class="fa fa-calendar"></i></a>
           <div class="w3-dropdown-hover">
             <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-blue">3</span></button>
             <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
@@ -100,9 +100,9 @@
  <form method="post" enctype="multipart/form-data">
 
          {% csrf_token %}
-
+<br><br><br>
          <label for="invite_user" >Enter email address and invite other friends to join S-date!</label>
-
+<br><br>
     <div class="article post-content blog-body post_content content section">
          <p hidden>here you can update your information:
          email,username,first and last name,country,city,date of birth,disability ,hobbies, and upload or change profile picture!

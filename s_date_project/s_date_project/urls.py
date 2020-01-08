@@ -67,6 +67,7 @@ urlpatterns = [
     url(r"^announcements/", include("pinax.announcements.urls", namespace="pinax_announcements")),
     url(r'^first_article/$', views.first_article, name='article1'),
     url(r'^second_article/$', views.second_article, name='article2'),
+    url(r'^events/$', views.events, name='events'),
     #url(r"^likes/", include("pinax.likes.urls", namespace="pinax_likes")),
 #    path('events/',show_profile),
     # POSTS:

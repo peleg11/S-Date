@@ -13,6 +13,8 @@ urlpatterns = [
     url(r'^profile/(?P<pk>\d+)/$', views.view_profile, name='view_profile_with_pk'),
     url(r'^settings/$', views.account_view, name='profile_settings'),
     url(r'^news/$', views.news, name='news'),
+    url(r'^events/$', views.events, name='events'),
+
     #    url(r'^profile_page/$', views.post, name='profile_page'),
     # url(r'^success/$', views.account_view, name='success'),
     # url(r'^events/$', views.events, name='events_page'),

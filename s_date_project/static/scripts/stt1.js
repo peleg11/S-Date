@@ -3,7 +3,7 @@ function startConverting()
          document.getElementById("re").style.visibility = "hidden";
          var r=document.getElementById('result');
          var spr=new webkitSpeechRecognition(); //Initialisation of web Kit
-           spr.continuous=true; //True if continous conversion is needed, false to stop transalation when paused
+           spr.continuous=false; //True if continous conversion is needed, false to stop transalation when paused
            spr.interimResults=true;
            spr.lang='en-IN'; // Set Input language
            spr.start(); //Start Recording the voice
