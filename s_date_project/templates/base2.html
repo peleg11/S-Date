@@ -168,13 +168,11 @@
                 <div class="w3-container w3-padding">
 
   <button onclick="startConverting()" class="w3-button w3-right-align" id="re" > <i id= 'record' class=" fa fa-microphone"></i></button>
-
+<i id='result' class="copy">when record apears click it to copy it to post form</i>
                   <form method="post" >  {% csrf_token %}
 
 
-
-<input type="text"  class = "form-control"  name="post" value="{{post}}" placeholder="Write something to post..." >
-<i id='result' for="post_input"></i>
+              <input type="text"  class = "form-control paste" name="post" value="{{post}}" placeholder="Write something to post..." >
 
     <br>
 
@@ -267,12 +265,8 @@
       </div>
     </div>
   </div>
-<h2> test for online </h2>
-{% for online in online_users%}
-{{online.username}}
-{%endfor%}
 
-  <h2>Other People</h2>
+  <h3>Sent friend request:</h3>
 
 {% for user in sent_friend_requests %}
 
@@ -288,7 +282,7 @@
                       </a>
                           <small><a class='btn btn-primary' href="{% url 'send_friend_request'  pk=user.pk %}">Add Friend</a></small>
                           {%endif%}
-                    {% endfor %}
+                    {% endfor %}<!--
                     {% for user in users  %}
                     {% is_block_user user.pk request.user.id as is_block_user_flag %}
 {%if not user.sent_friend_requests and not user in friends and not is_block_user_flag %}
@@ -325,13 +319,13 @@
              {% endif %}
 
          {% endfor %}
-
+-->
 </div>
 </div>
 </div>
 </div>
 
-</div>
+
 
 <!-- end footer -->
 
@@ -346,7 +340,7 @@
 <script src="{% static "scripts/calendar.js"%}"></script>
 <script src="{% static "scripts/users_list.js"%}"> </script>
 <script id="free_accessibility_plugin_script" src="https://accessibility.f-static.com/site/free-accessibility-plugin/accessibility.min.js?lan=en&place=bottom-right&distance=50" crossorigin="anonymous"></script>
-
+<script src="{% static "scripts/copy.js"%}"> </script>
 <!-- script inclusions -->
 {% block extrascripts %}
 {% endblock %}

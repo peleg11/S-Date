@@ -1,30 +1,52 @@
 {% load i18n %}
-{% load static %}
 {% load bootstrap %}
 {% load pinax_messages_tags %}
-{% load staticfiles %}
-{% load notification_tags %}
-{%load index%}​
 {% block head_title %}Messages{% endblock %}
 ​
-<html>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+{% load staticfiles %}
+{% load static %}
+{% load notification_tags %}
+{%load index%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/yeti/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static "css/style2.css" %}">
+      <!-- HTML5 shim and Respond.js for IE8 support of HTML5
+         elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the
+         page via file:// -->
 
+      <!--[if lt IE 9]>
+      <script src = "//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src = "//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
 
-<link rel="stylesheet" href="{% static "css/style2.css" %}">
+    <!-- inclusion of extra head tags. -->
+    {% block extrahead %}
+        {% include_notify_js_variables %}
+    {% endblock %}
+    <!-- end -->
+</head>
+<body class="w3-theme-l5" onload="renderDate()">
+
+<!-- navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-theme-d2 w3-left-align w3-large w3-padding-12">
     <a href="{% url 'view_profile' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="My Profile">
       <img src="{{ request.user.profile_pic.url }}" class="w3-circle" style="height:31px;width:35px" alt="Avatar">  My Profile</a>
       <a href="{% url 'profile_page' %}" class="w3-bar-item w3-button w3-padding-large w3-display-top"  title="Home"><i class="fa fa-home" ></i></a>
       <a href="{% url 'pinax_messages:inbox' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Messages"><i class="fa fa-envelope"></i></a>
-      <a href="" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Events"><i class="fa fa-calendar"></i></a>
+      <a href="{% url 'events' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Events"><i class="fa fa-calendar"></i></a>
               <a href="{% url 'news' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="News"><i class="fa fa-book"></i></a>
               <a href="{% url 'friends' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Friends"><i class="fa fa-users"></i></a>
       <div class="w3-dropdown-hover">
@@ -55,7 +77,8 @@
 
       </div>
     </div>
-  </html>
+
+<!-- end navbar -->
   <br>
   <br>
 ​
@@ -86,3 +109,8 @@
     </section>
 </div>
 {% endblock %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src ="{% static 'notify/notifyX.js' %}"></script>
+</body>
+</html>
