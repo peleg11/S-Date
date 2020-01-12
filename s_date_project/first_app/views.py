@@ -57,8 +57,10 @@ def friends(request):
     user_filter = UserFilter(request.GET, queryset=user_list)
     friend = Friend.objects.get(current_user=request.user)
     friends = friend.users.all()
+    x=Account.objects.count()
+    y=friends.count()
     args = {
-         'friends': friends, 'online_users':user_list
+         'friends': friends, 'online_users':user_list, 'x':x, 'y':y,
         } #
     return render(request, 'first_app/friends.html', args)
 def news(request):

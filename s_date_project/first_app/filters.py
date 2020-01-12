@@ -7,4 +7,4 @@ from django.db import models
 class UserFilter (django_filters.FilterSet):
     class Meta:
         model = Account
-        fields= ['username', 'firstname', 'lastname', 'country', 'city', 'disabillity', 'hobbies']
+        fields= ['username', 'firstname', 'lastname', 'country', 'city', 'disabillity', 'hobbies', 'is_sponsor']

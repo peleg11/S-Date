@@ -57,7 +57,7 @@ class MyAccountManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, username, password, firstname, lastname, country, city, birthdate, disabillity,
-                         hobbies, profile_pic):
+                         hobbies,is_sponsor, profile_pic):
         # user=self.model(
         user = self.create_user(
             email=self.normalize_email(email),
@@ -70,6 +70,7 @@ class MyAccountManager(BaseUserManager):
             birthdate=birthdate,
             disabillity=disabillity,
             hobbies=hobbies,
+            is_sponsor=is_sponsor,
             profile_pic=profile_pic,
         )
         user.is_admin = True

@@ -4,6 +4,21 @@
 {%load index%}
 <!DOCTYPE html>
 <html lang="en">
+<style type="text/css">
+.footer{
+  min-height: 100px;
+
+
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding-top: 40px;
+
+}
+</style>
 <head>
 
     <meta charset="UTF-8">
@@ -94,17 +109,17 @@
 
 
 
-    <div class="w3-containe w3-card w3-white w3-round w3-margin" ><br>
-          <img src="{{user.profile_pic.url}}" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:70px">
+    <div class="w3-container w3-card w3-white w3-round w3-margin" ><br>
+          <img src="{{user.profile_pic.url}}" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:65px;height:55px">
           {% if user.is_sponsor%}
           <span class="w3-right w3-opacity">Sponsor</span>
           {%endif%}
 
           <h4>{{user.firstname}} {{user.lastname}}</h4><br>
 
-          <p>{{user.city}}, {{user.country}} <br>
-          {{user.disabillity}}<br>
-          {{user.hobbies}}</p>
+          <p>Location: {{user.city}}, {{user.country}} <br>
+          Disabillity: {{user.disabillity}}<br>
+          Hobbies: {{user.hobbies}}</p>
 
 
         <a href="{% url 'view_profile_with_pk' pk=user.pk %}">
@@ -133,7 +148,9 @@
             {%else%}
             <button type="submit" class="w3-button w3-theme-d2 " name="user_id" value="{{user.id}}"><i class="fa fa-thumbs-up"></i> Like</button> {{user.total_likes}} Like{{user.total_likes|pluralize}}
             {% endif %}
+
           </form>
+          <br>
         <a href="{% url "pinax_messages:message_user_create" user_id=user.id %}" class="w3-button w3-theme-d2">Message this user</a>
 
 
@@ -159,9 +176,15 @@
 
 
 {%endfor%}
-{% include 'first_app/footer.html' %}
+<br>
+<div class="footer">
+<p class="">S-Date Social Network and Dating | 2019</p>
+<P> Number of registered users: {{x}}</p>
+  <p> Friends:{{y}} </p>
+</div>
 </div>
 <div class="w3-col m4"></div>
+
 
     <!-- end footer -->
 
@@ -176,6 +199,8 @@
     <script src="{% static "scripts/calendar.js"%}"></script>
     <script src="{% static "scripts/users_list.js"%}"> </script>
     <script id="free_accessibility_plugin_script" src="https://accessibility.f-static.com/site/free-accessibility-plugin/accessibility.min.js?lan=en&place=bottom-right&distance=50" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <!-- script inclusions -->
     {% block extrascripts %}

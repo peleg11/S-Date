@@ -47,21 +47,21 @@ class Migration(migrations.Migration):
             name='lastname',
             field=models.CharField(default='None', max_length=30),
         ),
-        migrations.CreateModel(
-            name='FriendRequest',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('timestamp', models.DateTimeField(auto_now_add=True)),
-                ('from_user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='from_user', to=settings.AUTH_USER_MODEL)),
-                ('to_user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='to_user', to=settings.AUTH_USER_MODEL)),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Friend',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('current_user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='owner', to=settings.AUTH_USER_MODEL)),
-                ('users', models.ManyToManyField(to=settings.AUTH_USER_MODEL)),
-            ],
-        ),
+    #    migrations.CreateModel(
+    #        name='FriendRequest',
+    #        fields=[
+    #            ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+    #            ('timestamp', models.DateTimeField(auto_now_add=True)),
+    #            ('from_user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='from_user', to=settings.AUTH_USER_MODEL)),
+    #            ('to_user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='to_user', to=settings.AUTH_USER_MODEL)),
+    #        ],
+    #    ),
+    #    migrations.CreateModel(
+    #        name='Friend',
+    #        fields=[
+    #            ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+    #            ('current_user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='owner', to=settings.AUTH_USER_MODEL)),
+    #            ('users', models.ManyToManyField(to=settings.AUTH_USER_MODEL)),
+    #        ],
+    #    ),
     ]

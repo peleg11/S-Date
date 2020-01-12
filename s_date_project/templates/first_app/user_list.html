@@ -98,16 +98,16 @@
 
 
   <div class="w3-container w3-card w3-white w3-round w3-margin" ><br>
-        <img src="{{user.profile_pic.url}}" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:70px">
+        <img src="{{user.profile_pic.url}}" alt="Avatar" class="w3-left w3-square w3-margin-right" style="width:65px;height:55px">
         {% if user.is_sponsor%}
         <span class="w3-right w3-opacity">Sponsor</span>
         {%endif%}
 
         <h4>{{user.firstname}} {{user.lastname}}</h4><br>
 
-        <p>{{user.city}}, {{user.country}} <br>
-        {{user.disabillity}}<br>
-        {{user.hobbies}}</p>
+        <p>Location: {{user.city}}, {{user.country}} <br>
+        Disabillity: {{user.disabillity}}<br>
+        Hobbies: {{user.hobbies}}</p>
 
         {% if not user in friends %}
       <a href="{% url 'view_profile_with_pk' pk=user.pk %}">

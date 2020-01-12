@@ -11,11 +11,11 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='post',
-            name='likes',
-            field=models.ManyToManyField(blank=True, related_name='post_likes', to=settings.AUTH_USER_MODEL),
-        ),
+    #    migrations.AddField(
+    #        model_name='post',
+    #        name='likes',
+    #        field=models.ManyToManyField(blank=True, related_name='post_likes', to=settings.AUTH_USER_MODEL),
+    #    ),
         migrations.DeleteModel(
             name='Like',
         ),
