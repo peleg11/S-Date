@@ -431,16 +431,17 @@ class TestMessages(BaseTest):
 
 #------------------------------------------------------------
                 #events#
+
 from datetime import timedelta
 
-from django.test import TestCase
+
 from django.utils import timezone
 
 from pinax.events.models import Event
 from pinax.events.templatetags.pinax_events_tags import events
 
 
-class Tests(TestCase):
+class TestsEvents(TestCase):
 
     def test_html_generated_on_save(self):
         event = Event.objects.create(
@@ -475,3 +476,44 @@ class Tests(TestCase):
             end_date=end
         )
         self.assertEquals(events().count(), 1)
+
+
+
+
+
+
+#-----------------articles-----------------#
+
+
+from pinax.news.models import News
+from pinax.news.templatetags.pinax_news_tags import news, press_releases
+
+
+class TestsArticles(TestCase):
+
+    def test_html_generated_on_save(self):
+        news = News.objects.create(
+            title="Test News",
+            url="http://example.com",
+            description="### The Main Event\n\n* Item Number 1\n* Item Number 2"
+        )
+        self.assertEquals(news.description_html, "<h3>The Main Event</h3>\n<ul>\n<li>Item Number 1</li>\n<li>Item Number 2</li>\n</ul>")
+
+    def test_news_tag(self):
+        News.objects.create(
+            title="Test News",
+            url="http://example.com",
+            description="### The Main Event\n\n* Item Number 1\n* Item Number 2"
+        )
+        self.assertEquals(news().count(), 1)
+        self.assertEquals(press_releases().count(), 0)
+
+    def test_press_releases_tag(self):
+        News.objects.create(
+            title="Test News",
+            url="http://example.com",
+            description="### The Main Event\n\n* Item Number 1\n* Item Number 2",
+            press_release=True
+        )
+        self.assertEquals(news().count(), 0)
+        self.assertEquals(press_releases().count(), 1)
