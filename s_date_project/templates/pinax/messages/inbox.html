@@ -1,7 +1,6 @@
 {% load i18n %}
 {% load bootstrap %}
 {% load pinax_messages_tags %}
-{% block head_title %}Messages{% endblock %}
 ​
 {% load staticfiles %}
 {% load static %}
@@ -80,7 +79,13 @@
 
 <!-- end navbar -->
   <br>
-  <br>
+  <br> <br>
+  <br> <br>
+<div class="container">
+​
+{% block head_title %}Messages{% endblock %}
+​
+
 ​
 {% block body %}
 <div class="pinax-messages-inbox-container">
@@ -109,6 +114,7 @@
     </section>
 </div>
 {% endblock %}
+    </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src ="{% static 'notify/notifyX.js' %}"></script>
