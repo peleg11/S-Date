@@ -167,3 +167,25 @@ class TestUserMethods(TestCase):
         self.assrtEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'first_app/profile_info.html')
 """
+
+
+class deactivate_user_case(TestCase):
+
+    # create regular with is_active attribute to false and test if he can login website
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(username='test@example.com', password='12test12',
+                                                         email='regularuser@example.com', firstname='user',
+                                                         lastname='user', country='country', city='city',
+                                                         birthdate='2000-10-20', disabillity='disabillity',
+                                                         hobbies='hobbies', is_sponsor=False, profile_pic='profile_pic')
+        self.user.save()
+        self.user.is_active = False
+
+    # deleting the users from test's database
+    def tearDown(self):
+        self.user.delete()
+
+    # function to check if user can login while hes account is deactivated, suppose to return false
+    def test_deactivate_login(self):
+        user = authenticate(username='test@example.com', password='12test12')
+        self.assertFalse((user is not None) and user.is_authenticated)
