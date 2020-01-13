@@ -44,4 +44,4 @@ Do git clone in gitbush https://github.com/peleg11/S-Date.git
 python manage.py runserver
 ```
 ### if the server is running correctly, copy the url provided to the browser :
-localhost:8000
+```localhost:8000```
