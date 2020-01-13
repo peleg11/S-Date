@@ -39,7 +39,7 @@ Do git clone in gitbush https://github.com/peleg11/S-Date.git
 
 ### in cmd change directory to project directory(where manage.py is )
 
-####to run server you need to write command in cmd:
+### to run server you need to write command in cmd:
 ```
 python manage.py runserver
 ```
