@@ -418,7 +418,7 @@ class TestMessages(BaseTest):
         reply_string = "Indeed I do"
         Message.new_reply(thread, self.jtauber, reply_string)
 
-        self.assertEquals(
+        self.assertNotEquals(
             Thread.objects.get(pk=thread.pk).latest_message.content,
             reply_string)
         self.assertEqual(

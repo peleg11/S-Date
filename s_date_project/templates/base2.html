@@ -90,7 +90,7 @@
     <div class="col-sm-3 left-sidebar">
 
       <div class="w3-container">
-        <div class="w3-card w3-center" width="190px">
+<!--        <div class="w3-card w3-center" width="190px">
           <p>Upcoming Events:</p>
           <div class="wrapper">
             <div class="calendar">
@@ -130,7 +130,7 @@
         </div>
         <br>
         <div id="cal-event"></div>
-        <br>
+    -->    <br>
 
 
                     {% for r_request in rec_friend_requests %}
@@ -245,12 +245,14 @@
 
         {% for friend in friends  %}
 
-<!--{% if not friend.firstname == 'Support' %}-->
-      {%if friend in online_users%}
+
+      {%if friend in online_users %}
+
         <div class="col-sm-12 chat-user online">
           {%else%}
           <div class="col-sm-12 chat-user">
             {%endif%}
+
           <a href="{% url "pinax_messages:message_user_create" user_id=friend.id %}">
             <img src="{{ friend.profile_pic.url }}" class="pull-left"/>
             &nbsp;
@@ -262,7 +264,7 @@
           </a>
 
         </div>
-{%endif%}
+
         {%endfor%}
 
       </div>

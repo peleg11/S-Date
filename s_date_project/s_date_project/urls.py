@@ -33,7 +33,7 @@ urlpatterns = [
     #url(r'^user_login/$',views.base, name='base'),
     url(r'^user_login/$', views.login_view, name='user_login'),
     url(r'^profile_page/$', views.post, name='profile_page'),
-    url(r'^profile_page/(?P<pk>\d+)/$', views.post, name='profile_page'),
+    #url(r'^profile_page/(?P<pk>\d+)/$', views.post, name='profile_page'),
 
     path('admin/', admin.site.urls),
     url(r'^settings/$', views.account_view, name='profile_settings'),

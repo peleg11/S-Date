@@ -57,7 +57,7 @@ def friends(request):
     user_list = Account.objects.all()
     user_filter = UserFilter(request.GET, queryset=user_list)
     friend = Friend.objects.get(current_user=request.user)
-    friends = friend.users.all()
+    friends = friend.users.all().filter(is_active=True)
     x = Account.objects.count()
     y = friends.count()
     args = {
@@ -287,7 +287,7 @@ def post(request):
         # post=None
         #    id=request.POST['id']
         # post=get_object_or_404(Post, id=s)
-        x = Account.objects.count()
+        x = Account.objects.filter(is_active=True).count()
         is_liked = [2 for x in range(20)]
         for post in posts:
             # post = Post.objects.get(user_id='post_id')
@@ -314,7 +314,7 @@ def post(request):
         #    try:
         Friend.make_friend(current_user=request.user, new_friend=Account.objects.get(id=1))
         friend = Friend.objects.get(current_user=request.user)
-        friends = friend.users.all()
+        friends = friend.users.all().filter(is_active=True)
 
         button_status = 'none'
         if request.user not in friend.users.all():
@@ -484,7 +484,7 @@ def edit_blog_view(request, pk):
 
 
 def search(request):
-    user_list = Account.objects.all()
+    user_list = Account.objects.all().filter(is_active=True)
     user_filter = UserFilter(request.GET, queryset=user_list)
     friend = Friend.objects.get(current_user=request.user)
     friends = friend.users.all()
