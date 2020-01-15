@@ -37,14 +37,12 @@ pinax-messages==2.0.2
 pinax-news==2.0.3
 pycparser==2.19
 pytz==2019.3
-<<<<<<< HEAD
 requests==2.22.0
 six==1.13.0
 soupsieve==1.9.5
 sqlparse==0.3.0
 urllib3==1.25.7
 wincertstore==0.2
-=======
 six==1.13.0
 sqlparse==0.3.0
 wincertstore==0.2
