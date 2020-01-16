@@ -72,7 +72,7 @@
       {% else %}
 
 
-      <form class="form-signin" method="post">{% csrf_token %}
+      <form class="form-signin" enctype="multipart/form-data" method="post" >{% csrf_token %}
                      <div class="article post-content blog-body post_content content section">
 <!--<div class="wv-button-placeholder"></div>-->
      <p hidden> Register an account, please enter: email address,username,password,confirm password,first and last name,country,city,

@@ -86,7 +86,7 @@ def registration_view(request):
     registered = False
     context = {}
     if request.POST:
-        form = RegistrationForm(request.POST)
+        form = RegistrationForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             email = form.cleaned_data.get('email')
