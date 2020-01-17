@@ -1,3 +1,9 @@
+{% load pinax_events_tags %}
+ {% events as event_items %}
+ {% load staticfiles %}
+ {% load static %}
+ {% load notification_tags %}
+ {%load index%}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,36 +26,37 @@
 </style>
     <meta charset="utf-8">
     <title></title>
+    {% block extrahead %}
+        {% include_notify_js_variables %}
+    {% endblock %}
+
   </head>
   <body>
 
-      <!-- Navbar -->
-      <div class="w3-top">
-        <div class="w3-bar w3-theme-d2 w3-left-align w3-large w3-padding-12">
-          <a href="{% url 'view_profile' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="My Profile">
-            <img src="{{ request.user.profile_pic.url }}" class="w3-circle" style="height:31px;width:35px" alt="Avatar">  My Profile</a>
-            <a href="{% url 'profile_page' %}" class="w3-bar-item w3-button w3-padding-large w3-display-top"  title="Home"><i class="fa fa-home" ></i></a>
-            <a href="#" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Messages"><i class="fa fa-envelope"></i></a>
-            <a href="" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Events"><i class="fa fa-calendar"></i></a>
-            <div class="w3-dropdown-hover">
-              <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-blue">3</span></button>
-              <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-                <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
-                <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
-                <a href="#" class="w3-bar-item w3-button"><!-- Nontification from databse here--></a>
-              </div>
+    <div class="w3-top">
+      <div class="w3-bar w3-theme-d2 w3-left-align w3-large w3-padding-12">
+        <a href="{% url 'view_profile' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="My Profile">
+          <img src="{{ request.user.profile_pic.url }}" class="w3-circle" style="height:31px;width:35px" alt="Avatar">  My Profile</a>
+          <a href="{% url 'profile_page' %}" class="w3-bar-item w3-button w3-padding-large w3-display-top"  title="Home"><i class="fa fa-home" ></i></a>
+          <a href="{% url 'pinax_messages:inbox' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Messages"><i class="fa fa-envelope"></i></a>
+          <a href="{% url 'events' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Events"><i class="fa fa-calendar"></i></a>
+                  <a href="{% url 'news' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="News"><i class="fa fa-book"></i></a>
+                  <a href="{% url 'friends' %}" class="w3-bar-item w3-button  w3-padding-large w3-display-top" title="Friends"><i class="fa fa-users"></i></a>
+          <div class="w3-dropdown-hover">
+            <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-blue">{{ user.notifications.unread.count }}</span></button>
+            <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:500px">
+
+              <div class="notificationContent" style="overflow-y: scroll; height: 100%;">
+                                                  <ul class="notification-box-list" style="margin:0; padding:0;list-style-type: none;">
+                                                      {% render_notifications using user.notifications.active.prefetch for box %}
+                                                      <li style="background-color: #ddd; padding: 5px; text-align: center;">
+                                                          <a href="#" style="color: black;">All Notifications</a>
+                                                      </li>
+                                                  </ul>
+                                              </div>
+
             </div>
-
-            <div class="w3-bar-item w3-input w3-display-topmiddle w3-hover-none">
-              <form action="/action_page.php">
-
-                <input type="text" style="width:300px" placeholder="search"  name="search">
-      <button type="submit"><i class="fa fa-search"></i></button>
-              </form>
-    </div>
-
-
-
+          </div>
 
 
 
@@ -59,7 +66,7 @@
             {% endif %}
             <a href="{%url 'profile_settings'%}" class="w3-bar-item w3-button  w3-right w3-padding-large w3-display-top " title="settings"><i class="fa fa-user"></i></a>
 
-            <a href="{% url 'search'%}" class="w3-bar-item w3-button w3-right w3-padding-large w3-display-top" title="search"><i class="fa fa-search"></i></a>
+            <a href="{% url 'search'%}" class="w3-bar-item w3-button w3-right w3-padding-large w3-display-top"  title="search"><i class="fa fa-search"></i></a>
 
           </div>
         </div>
@@ -126,6 +133,11 @@
     				</div>
     -->
     				<!-- Submit btn -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+            <script src ="{% static 'notify/notifyX.js' %}"></script>
+
+            <script id="free_accessibility_plugin_script" src="https://accessibility.f-static.com/site/free-accessibility-plugin/accessibility.min.js?lan=en&place=bottom-right&distance=50" crossorigin="anonymous"></script>
 
   </body>
 </html>

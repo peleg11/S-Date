@@ -14,16 +14,5 @@ urlpatterns = [
     url(r'^settings/$', views.account_view, name='profile_settings'),
     url(r'^news/$', views.news, name='news'),
     url(r'^events/$', views.events, name='events'),
-
-    #    url(r'^profile_page/$', views.post, name='profile_page'),
-    # url(r'^success/$', views.account_view, name='success'),
-    # url(r'^events/$', views.events, name='events_page'),
-    # """#POSTS:
-    # url(r"^$", views.PostList.as_view(), name="all"),
-    # url(r"new/$", views.CreatePost.as_view(), name="create"),
-    # url(r"by/(?P<username>[-\w]+)/$",views.UserPosts.as_view(),name="for_user"),
-    # url(r"by/(?P<username>[-\w]+)/(?P<pk>\d+)/$",views.PostDetail.as_view(),name="single"),
-    # url(r"delete/(?P<pk>\d+)/$",views.DeletePost.as_view(),name="delete"),
-    # """
     path('deactivate/', views.deactivate, name='deactivate'),
 ]

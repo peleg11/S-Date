@@ -41,10 +41,8 @@ INSTALLED_APPS = [
     'first_app',
     'rest_framework',
     'pinax.messages',
-    'pinax.likes',
     'bootstrapform',
     'notify',
-    'pinax.announcements',
     'imagekit',
     'pinax.news',
     'pinax.events'
@@ -129,13 +127,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 
 ]
-PINAX_LIKES_LIKABLE_MODELS = {
-        "app.Model": {}  # override default config settings for each model in this dict
-    }
-AUTHENTICATION_BACKENDS = [
-        # other backends
-        'pinax.likes.auth_backends.CanLikeBackend',
-    ]
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
