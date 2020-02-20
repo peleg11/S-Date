@@ -1,9 +1,10 @@
 # S-Date
 SCE - Software Engineering Fundamentals Course project - group number 5
-## You need applications :
+## install packeges :
 ```
-for install:
-(pip install (name of aplication))
+
+pip install ~(name of aplication)~
+
 argon2-cffi==19.2.0
 asgiref==3.2.3
 cffi==1.13.2
@@ -48,13 +49,4 @@ sqlparse==0.3.0
 wincertstore==0.2
 ```
 
-Do git clone in gitbush https://github.com/peleg11/S-Date.git
 
-### in cmd change directory to project directory(where manage.py is )
-
-### to run server you need to write command in cmd:
-```
-python manage.py runserver
-```
-### if the server is running correctly, copy the url provided to the browser :
-```localhost:8000```
